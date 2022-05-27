@@ -63,12 +63,6 @@
             sql3+="('"+INGRE+"')";
             int count3 = stmt.executeUpdate(sql3);
 
-
-            // 가장 마지막 RNUM 읽는 쿼리
-            // String sql3="select RNUM from PRERECIPE order by RNUM desc limit 1";
-            // out.print(sql3);
-            
-
         } catch(SQLException ex) {
             out.println(ex.getMessage());
             ex.printStackTrace();
