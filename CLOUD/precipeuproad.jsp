@@ -6,6 +6,8 @@
 <%@ page import ="java.sql.SQLException" %>
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import ="java.lang.String" %>
+<% request.setCharacterEncoding("utf-8"); %>
+
 <html>
     <head>
         <title>세나요</title>
@@ -29,9 +31,9 @@
 
         try{
             // Driver로부터 데이터베이스와의 Connection을 얻기 위함
-            String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
-            String dbUser ="tester"; //mysql id
-            String dbPass ="1234"; //mysql password
+            String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
+            String dbUser ="cloud"; //mysql id
+            String dbPass ="5678"; //mysql password
             String query ="select * from CLIENT"; //query
         
             conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
@@ -55,7 +57,7 @@
                 }
             }
 
-            String sql2="insert into PRERECIPE(WEATHER,TITLE,ID,TIME,RECIPE) values";
+            String sql2="insert into PRECIPE(WEATHER,TITLE,ID,TIME,RECIPE) values";
             sql2+="('"+WEATHER+"','"+TITLE+"','"+id+"','"+TIME+"','"+RECIPE+"')";
             int count2 = stmt.executeUpdate(sql2);
             
