@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>precipeuproad</title>
+    <link rel="stylesheet" type="text/css" href="precipeuproad.css">
+</head>
+
+<body>
+    <div class="head">
+        <h3 style="
+            margin: 0;
+            font-size: 2rem;
+        ">
+            세상에 나쁜 요리는 없다
+        </h3>
+        <div class="menu">
+            <a class="btn">RECIPE</a>
+            <a class="btn" >OWN RECIPE</a>
+            <a class="btn" >RANKING</a>
+            <a class="btn" onClick="location.href='login.html'">LOGIN</a>
+        </div>
+    </div>
+
+    <div class="board_wrap">
+            <ul class="nav">
+                
+            </ul>
+
+        <div class="body">
+            <form method="post" name="form">
+            <div class="board_title">
+                <strong>개인레시피 업로드</strong>
+                <p>나만의 레시피를 업로드 해주세요!!</p>
+            </div>
+            <div class="board_write_wrap">
+                <div class="board_write">
+                    <div class="title">
+                        <dl>
+                           <dt>제목</dt>
+                             <dd><input type="text" name="title" placeholder="제목 입력"></dd>
+                        </dl>
+                    </div>
+
+                    <div class="title">
+                        <dl>
+                           <dt>소요시간 (분)</dt>
+                             <dd><input type="text" name="time" placeholder="숫자만 입력해주세요"></dd>
+                        </dl>
+                    </div>
+
+                    <div class="title">
+                        <dl>
+                           <dt>날씨</dt>
+                             <dd>
+                                 <input type="checkbox" name="weather" value="sunny"> 맑음
+                                 <input type="checkbox" name="weather" value="cloud"> 흐림
+                                 <input type="checkbox" name="weather" value="rain"> 비
+                                 <input type="checkbox" name="weather" value="snow"> 눈
+                                 <input type="checkbox" name="weather" value="fog"> 안개
+                            </dd>
+                        </dl>
+                    </div>
+
+                    <div class="title">
+                        <dl>
+                           <dt>재료</dt>
+                             <dd><input type="text" name="ingre" placeholder="재료 입력"></dd>
+                        </dl>
+                    </div>
+
+                    <div class="cont">
+                        <textarea name="recipe" placeholder="내용 입력"></textarea>
+                    </div>
+                </div>
+                <div class="bt_wrap">
+                    <input type="submit" value="register" class="on" onClick="form.action='precipeuproad.jsp'">
+                    <a href="#">취소</a>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</body>
