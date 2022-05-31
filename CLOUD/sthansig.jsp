@@ -1,0 +1,126 @@
+<%@ page contentType ="text/html; charset=utf-8" %>
+<%@ page import ="java.sql.DriverManager" %>
+<%@ page import ="java.sql.Connection" %>
+<%@ page import ="java.sql.Statement" %>
+<%@ page import ="java.sql.ResultSet" %>
+<%@ page import ="java.sql.SQLException" %>
+<%@ page import = "java.sql.*" %>
+<%@ page import = "java.util.*" %>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>구현해보자!</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="allstandard.css">
+    </head>
+    <body>
+        <% // MySQL JDBC Driver Loading
+                Class.forName("com.mysql.cj.jdbc.Driver"); 
+                Connection conn =null;
+                Statement stmt =null;
+                ResultSet rs =null;
+
+                PreparedStatement pstmt = null;
+
+                try {
+                    String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
+                    String dbUser ="tester"; //mysql id
+                    String dbPass ="1234"; //mysql password
+                    String query ="select * from recipe where category='한식' ORDER BY views desc"; //query
+
+                    String querys = "update board set views = views + 1 where recipe = ?";
+                    
+
+                    
+
+
+                    // Create DB Connection
+                    conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+                    // Create Statement
+                    stmt = conn.createStatement();
+                    // Run Qeury
+                    rs = stmt.executeQuery(query);
+                    // Print Result (Run by Query)
+
+                    pstmt = conn.prepareStatement(querys);
+                    
+                    //pstmt.executeUpdate();
+
+
+                    
+
+
+                    
+            %>
+
+            
+
+
+        <div class="table">
+            <thead>
+                <tr>
+                    <th><a href="#">CLOUD</a></th>
+                    <th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
+                    <th><a href="#">RECIPE</a></th>
+                    <th><a href="#">OWN RECIPE</a></th>
+                    <th><a href="#">RANKING</a></th>
+                    <th><a href="#">PROFILE</a></th>
+                </tr>
+            </thead>
+        </div>
+
+        <div class="intro_text">
+            <h1>KOREAN FOODS</h1>
+        </div>
+
+
+        <div class="recipe">
+            <table>  
+            
+                <tr>
+                    <%
+            		int count = 1;
+		            while (rs.next()) {
+                    %>
+				<td>
+					<a href=<%=rs.getString("link")%>>
+                    <img src='<%=rs.getString("picture")%>' width='300' height='300'><br>
+                    <%=rs.getString("recipetitle")%><br>
+                    조회수<%=rs.getInt("views")%><br>
+                    소요시간<%=rs.getInt("usetime")%></a>
+				</td>
+                    <%
+                    if (count > 0 && count % 4 == 0) {	
+                    %>
+			    </tr>
+			    <tr>
+                    <%
+                    }
+			        count++;
+		            }
+                    %>
+                
+
+
+                 <%
+    
+            } catch(SQLException ex) {
+                out.print(ex.getMessage());
+                ex.printStackTrace();
+            } finally {
+                // Close Statement
+                if (rs !=null) try { rs.close(); } catch(SQLException ex) {}
+                if (stmt !=null) try { stmt.close(); } catch(SQLException ex) {}
+                // Close Connection
+                if (conn !=null) try { conn.close(); } catch(SQLException ex) {}
+
+                if (pstmt != null) pstmt.close();
+            }
+          
+            %>
+            </table>
+        </div>
+    </body>
+</html>
