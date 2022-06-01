@@ -22,20 +22,11 @@
                 Statement stmt =null;
                 ResultSet rs =null;
 
-                PreparedStatement pstmt = null;
-
                 try {
                     String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
                     String dbUser ="tester"; //mysql id
                     String dbPass ="1234"; //mysql password
                     String query ="select * from recipe where category='한식' ORDER BY views desc"; //query
-
-                    String querys = "update board set views = views + 1 where recipe = ?";
-                    
-
-                    
-
-
                     // Create DB Connection
                     conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
                     // Create Statement
@@ -43,16 +34,7 @@
                     // Run Qeury
                     rs = stmt.executeQuery(query);
                     // Print Result (Run by Query)
-
-                    pstmt = conn.prepareStatement(querys);
-                    
-                    //pstmt.executeUpdate();
-
-
-                    
-
-
-                    
+                   
             %>
 
             
@@ -85,11 +67,11 @@
 		            while (rs.next()) {
                     %>
 				<td>
-					<a href=<%=rs.getString("link")%>>
+					<a href=<%="http://49.50.164.44/redirectHandler.jsp?num=" + rs.getString("num")%>>
                     <img src='<%=rs.getString("picture")%>' width='300' height='300'><br>
                     <%=rs.getString("recipetitle")%><br>
                     조회수<%=rs.getInt("views")%><br>
-                    소요시간<%=rs.getInt("usetime")%></a>
+                    소요시간<%=rs.getString("usetime")%></a>
 				</td>
                     <%
                     if (count > 0 && count % 4 == 0) {	
@@ -115,8 +97,6 @@
                 if (stmt !=null) try { stmt.close(); } catch(SQLException ex) {}
                 // Close Connection
                 if (conn !=null) try { conn.close(); } catch(SQLException ex) {}
-
-                if (pstmt != null) pstmt.close();
             }
           
             %>
