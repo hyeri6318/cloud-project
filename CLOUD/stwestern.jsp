@@ -1,3 +1,4 @@
+<!--장영훈-->
 <%@ page contentType ="text/html; charset=utf-8" %>
 <%@ page import ="java.sql.DriverManager" %>
 <%@ page import ="java.sql.Connection" %>
@@ -54,7 +55,7 @@
         </div>
 
         <div class="intro_text">
-            <h1>KOREAN FOODS</h1>
+            <h1>WESTERN FOODS</h1>
         </div>
 
 
