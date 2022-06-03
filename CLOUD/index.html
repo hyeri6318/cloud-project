@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <form method="post" action="index.jsp">
+        <form method="post" action="search.jsp">
             <div class="head">
                 <h3 style="
                     margin: 0;
@@ -32,15 +32,18 @@
             <div class="wrap">
                 <div class="body">
                     <div class="searchArea">
-                            <!-- <dl>
-                                <dt>검색</dt>
-                                    <dd><input type="search" placeholder="검색하고 싶은 재료를 입력하세요"></dd>
-                            </dl> -->
-                        <input type="search" placeholder="검색하고 싶은 재료를 입력하세요">
-                            <!-- <span>검색</span> -->
-                        <a class="btn_search" onclick="location.href=''">검색</a>
+                              <!-- <dl>
+                                   <dt>검색</dt>
+                                       <dd><input type="search" placeholder="검색하고 싶은재료를 입력하세요"></dd> 
+                             </dl> -->
+                             
+                            <!-- *****여기 수정(장영훈)***** -->
+                            <!-- <input type="search" placeholder="검색하고 싶은 재료를 입력하세요"> -->
+                             <!-- <span>검색</span> -->
+                            <!-- <a class="btn_search" onclick="location.href='search.jsp'">검색</a> -->
 
-                        
+                            <input type="search" name="search" placeholder="검색하고 싶은 재료를 입력하세요">
+                            <button type="submit" class="btn_search">검색</button>
 
                     </div>
 
