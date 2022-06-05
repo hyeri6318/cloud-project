@@ -51,13 +51,25 @@
 
                     <div class="title">
                         <dl>
+                           <dt>카테고리</dt>
+                             <dd>
+                                 <input type="radio" name="cate" value="korea"> 한식
+                                 <input type="radio" name="cate" value="chinese"> 중식
+                                 <input type="radio" name="cate" value="western"> 양식
+                                 <input type="radio" name="cate" value="japanese"> 일식
+                            </dd>
+                        </dl>
+                    </div>
+
+                    <div class="title">
+                        <dl>
                            <dt>날씨</dt>
                              <dd>
                                  <input type="radio" name="weather" value="sunny"> 맑음
                                  <input type="radio" name="weather" value="cloud"> 흐림
                                  <input type="radio" name="weather" value="rain"> 비
                                  <input type="radio" name="weather" value="snow"> 눈
-                                 <input type="radio" name="weather" value="fog"> 안개
+                                 <input type="radio" name="weather" value = "fog"> 안개
                             </dd>
                         </dl>
                     </div>
@@ -75,7 +87,7 @@
                 </div>
                 <div class="bt_wrap">
                     <input type="submit" value="register" class="on" onClick="form.action='precipeuproad.jsp'">
-                    <a href="#">취소</a>
+                    <input type=button value="취소" onClick="location.href='precipe.html'" >
                 </div>
             </div>
             </form>

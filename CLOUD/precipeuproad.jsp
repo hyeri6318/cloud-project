@@ -19,10 +19,11 @@
 
         String TITLE = request.getParameter("title");
         String TIME = request.getParameter("time");
+        String CATE = request.getParameter("cate");
         String WEATHER = request.getParameter("weather");
         String INGRE = request.getParameter("ingre");
         String RECIPE = request.getParameter("recipe");
-        
+                
         // 업로드할 클래스 이름 지정
         Class.forName("com.mysql.cj.jdbc.Driver"); 
         Connection conn =null;
@@ -57,14 +58,9 @@
                 }
             }
 
-            String sql2="insert into PRECIPE(WEATHER,TITLE,ID,TIME,RECIPE) values";
-            sql2+="('"+WEATHER+"','"+TITLE+"','"+id+"','"+TIME+"','"+RECIPE+"')";
+            String sql2="insert into PRECIPE(WEATHER,CATE,TITLE,ID,TIME,RECIPE,INGRE) values";
+            sql2+="('"+WEATHER+"','"+CATE+"','"+TITLE+"','"+id+"','"+TIME+"','"+RECIPE+"','"+INGRE+"')";
             int count2 = stmt.executeUpdate(sql2);
-            
-            String sql3="insert into PINGRE(INGRE) values";
-            sql3+="('"+INGRE+"')";
-            int count3 = stmt.executeUpdate(sql3);
-
         } catch(SQLException ex) {
             out.println(ex.getMessage());
             ex.printStackTrace();
