@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
-        <title>구현해보자!</title>
+        <title>표준양식레시피</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="allstandard.css">
     </head>
