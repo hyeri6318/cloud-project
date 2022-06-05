@@ -1,5 +1,5 @@
 <!--장영훈-->
-<%@ page contentType ="text/html; charset=utf-8" %>
+<%@ page contentType ="text/html; charset=utf-8"%>
 <%@ page import ="java.sql.DriverManager" %>
 <%@ page import ="java.sql.Connection" %>
 <%@ page import ="java.sql.Statement" %>
@@ -12,24 +12,66 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
-        <title>구현해보자!</title>
+        <title>검색결과</title>
         <meta charset="utf-8">
+        
         <link rel="stylesheet" type="text/css" href="allstandard.css">
     </head>
     <body>
         <% // MySQL JDBC Driver Loading
                 //1. getParameter로 index.html에서 검색한 값을 search로 가져오기
                 String search = request.getParameter("search");
+
                 Class.forName("com.mysql.cj.jdbc.Driver"); 
                 Connection conn =null;
                 Statement stmt =null;
                 ResultSet rs =null;
 
+                
+                
+                //String[] list = search.split(" ");
+                //out.print(Arrays.toString(list));
+                int i, k;
+                //for(i = 0; i < list.length; i++){
+                //        out.print("[" + i + "]" + list[i]);
+                //   }
+                //for(k = i; k < 10; k++){
+                //    list[k] = " ";
+                //}
+                
+                //List<String> list = Arrays.asList(search.split(" "));
+
+                String[] arr = search.split(" ");
+                List<String> list = new ArrayList<>(Arrays.asList(arr));
+
+                for(i = 0; i < list.size(); i++){}
+
+                for(k = i; k < 10; k++){
+                    list.add("");
+                }
+
+                String[] newArr = list.toArray(new String[0]);
+
+
                 try {
                     String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
                     String dbUser ="tester"; //mysql id
                     String dbPass ="1234"; //mysql password
-                    String query ="select * from recipe"; //query
+
+                    //for(int k = 0; k <= i; k++){
+                    //
+                    //}
+
+                    //String query ="select * from recipe"; //query
+                    //String query = "select *from recipe where recipe LIKE '%감자%두부%'";
+                    String query = "select *from recipe where recipe LIKE '%" + newArr[0] + "%" + newArr[1] + "%" + newArr[2] + "%" + newArr[3] + "%" + newArr[4] + "%" + newArr[5] + "%" + newArr[6] + "%" + newArr[7] + "%" + newArr[8] + "%" + newArr[9] +"%';";              
+
+                    //if(i == 1){
+                        //String query = "select *from recipe where recipe LIKE '%" + newArr[0] + "%" + newArr[1] +"%" newArr[2] + "%" + newArr[3] + "%" + newArr[4] + "%" + newArr[5] + "%" + newArr[6] + "%" + newArr[7] + "%" + newArr[8] + "%" + newArr[9] + "%';";   
+                    //}
+
+
+                    
                     // Create DB Connection
                     conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
                     // Create Statement
@@ -57,7 +99,7 @@
         </div>
 
         <div class="intro_text">
-            <h1>KOREAN FOODS</h1>
+            <h1>SEARCH FOOD</h1>
         </div>
 
 
