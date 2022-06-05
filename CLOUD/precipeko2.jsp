@@ -102,19 +102,11 @@
                 text-decoration: none;
                 margin-left:50px;
                 color:white;
-                cursor:pointer;"            
-            onClick=location.href='precipeuproad.html'>UPROAD PRECIPE</a>
-            <a class="btn" style="
-                text-decoration: none;
-                margin-left:50px;
-                color:white;
                 cursor:pointer;"
             onClick=location.href='profile.html'>PROFILE</a>
         </div>
     </div>
     
-    
-
             <table style="
                 width=100%;
                 cellpadding=0;
@@ -150,7 +142,7 @@
      </tr>
 	 <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
     <tr>
-      <td align="center" width="76">이름</td>
+      <td align="center" width="76">작성자</td>
       <td width="319"><%=id%></td>
      </tr>
      <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
@@ -171,11 +163,8 @@
 
 
 <%
-    query="UPDATE PRECIPE SET VIEW=" + view + " WHERE RNUM=" + rnum + ";";
-    stmt.executeUpdate(query);
-    rs.close();
-    stmt.close();
-    conn.close();
+                query="UPDATE PRECIPE SET VIEW=" + view + " WHERE RNUM=" + rnum + ";";
+                stmt.executeUpdate(query);
             }
     } catch(SQLException ex) {
         out.println(ex.getMessage());
@@ -195,7 +184,87 @@
       <td width="0">&nbsp;</td>
      </tr>
     </table>
+<%
+    //String rnum = request.getParameter("rnum");
+    try{
+        // Driver로부터 데이터베이스와의 Connection을 얻기 위함
+        String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
+        String dbUser ="tester"; //mysql id
+        String dbPass ="1234"; //mysql password
+        String sqlCom = "SELECT CTIME, COMMENTS, ID FROM COMMENTS WHERE RNUM="+rnum+";";
 
+        conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+
+        // Connection 객체가 생성되면 SQL 문을 데이터베이스로 전송하기 위함
+        stmt=conn.createStatement();
+        
+
+        rs = stmt.executeQuery(sqlCom);
+
+%>
+    <table style="
+                width=80%;
+                cellpadding=0;
+                cellspacing=0;
+                border=0;
+                text-align: center;
+                margin: auto;
+                margin-top: 60px;
+                font-size: 1.4rem;
+            ">
+
+            <div style="height: 50px;">&nbsp;</div>
+                <form action="/precipeko3.jsp" method="post">
+                <input type="hidden" name="rnum" value=<%=rnum%> />
+                <textarea name="comments" style="
+                    display: block;
+                    width: 800px;
+                    height: 50px;
+                    padding: 15px;
+                    margin: auto;
+                    box-sizing: border-box;
+                    border: 0;
+                    resize: vertical;
+                    white-space: pre;
+                "></textarea>
+                <input type="submit" value="저장">
+                </form>
+
+
+<%
+            // 댓글 목록
+            while (rs.next()){
+                // 조건문
+                String ctime = rs.getString("ctime");
+                String comments = rs.getString("comments");
+                String id = rs.getString("id");
+
+%>
+
+            <tr height="25" align="center" >
+	            <td align="center"><%=ctime %></td>
+	            <td align="left"><%=comments %></td>
+	            <td align="center"><%=id %></td>
+	            <td>&nbsp;</td>
+            </tr>
+            <tr height="1" bgcolor="#D2D2D2"><td colspan="6"></td></tr>
+
+<%
+            }
+
+            
+
+            rs.close();
+            stmt.close();
+            conn.close();
+
+    } catch(SQLException ex) {
+        out.println(ex.getMessage());
+        ex.printStackTrace();
+    }
+%>
+
+            </table>
 
     </body>
 </html>

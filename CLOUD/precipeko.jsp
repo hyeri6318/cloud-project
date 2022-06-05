@@ -70,7 +70,7 @@
             onClick=location.href='profile.html'>PROFILE</a>
         </div>
     </div>
-    
+
     <%
         // 업로드할 클래스 이름 지정
         Class.forName("com.mysql.cj.jdbc.Driver"); 
@@ -83,7 +83,7 @@
             String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
             String dbUser ="tester"; //mysql id
             String dbPass ="1234"; //mysql password
-            String query ="select RNUM, TITLE, ID, TIME, VIEW from PRECIPE order by VIEW DESC"; //query
+            String query ="select RNUM, TITLE, ID, TIME, VIEW from PRECIPE where CATE='한식' order by VIEW DESC"; //query
         
             conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
@@ -151,7 +151,6 @@
 	                    <td>&nbsp;</td>
                     </tr>
                     <tr height="1" bgcolor="#D2D2D2"><td colspan="6"></td></tr>
-            
     <%
                 }
             }
@@ -170,12 +169,7 @@
                 <tr align="center">
                     <td><input type=button value="글쓰기" onClick=location.href='precipeuproad.html'></td>
                 </tr>
+                
             </table>
-
-
-
-
-
-
     </body>
 </html>
