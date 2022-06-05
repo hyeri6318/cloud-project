@@ -24,7 +24,7 @@
             String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
             String dbUser ="tester"; //mysql id
             String dbPass ="1234"; //mysql password
-            String query ="SELECT RNUM, TITLE, ID, TIME, VIEW, RECIPE FROM PRECIPE WHERE RNUM=" + rnum + ";"; //query
+            String query ="SELECT RNUM, TITLE, ID, TIME, VIEW, INGRE, RECIPE FROM PRECIPE WHERE RNUM=" + rnum + ";"; //query
         
             conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
@@ -44,6 +44,7 @@
                     String id = rs.getString("id");
                     String time = rs.getString("time");
                     int view = rs.getInt("view");
+                    String ingre = rs.getString("ingre");
                     String recipe = rs.getString("recipe");
                     view++;
             // TODO
@@ -154,6 +155,10 @@
     <tr>
       <td align="center" width="76">조회수</td>
       <td width="319"><%=view%></td>
+     </tr>
+     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr><tr>
+      <td align="center" width="76">재료</td>
+      <td width="319"><%=ingre%></td>
      </tr>
      <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
                 <tr>
