@@ -5,186 +5,209 @@
 <%@ page import ="java.sql.ResultSet" %>
 <%@ page import ="java.sql.SQLException" %>
 <%@ page import ="java.util.ArrayList" %>
-<%@ page import ="java.io.PrintWriter" %>
+<%@ page import ="java.lang.String" %>
+<%@ page import ="java.sql.*"%>
 <% request.setCharacterEncoding("utf-8"); %>
 
-  <html>
-
-  <head>
-    <title>세나요</title>
-  </head>
-
-  <%
-  String id=(String)session.getAttribute("id");
-
-  String RNUM="";
-  String TITLE="";
-  String TIME="";
-  String INGRE="";
-  String RECIPE="";
-  String WEATHER="";
-  String CATE="";
-  //String KOREA="";
-  //String CHINESE="";
-  //String WESTERN="";
-  //String JAPANESE="";
-  //String SUNNY="";
-  //String CLOUD="";
-  //String RAIN="";
-  //String SNOW="";
-  //String FOG="";
-//  int indx = Integer.parseInt(requset.getParameter("idx"));
-
-  Class.forName("com.mysql.cj.jdbc.Driver"); 
-  Connection conn =null;
-  Statement stmt =null;
-  ResultSet rs =null;
-
-  try{
-      // Driver로부터 데이터베이스와의 Connection을 얻기 위함
-      String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
-      String dbUser ="cloud"; //mysql id
-      String dbPass ="5678"; //mysql password
-      String query ="select * from PRECIPE WHERE ID = '"+id+"'"; //query
+<%
+        // 업로드할 클래스 이름 지정
+        Class.forName("com.mysql.cj.jdbc.Driver"); 
+        Connection conn =null;
+        Statement stmt =null;
+        ResultSet rs =null;
+        int rnum = Integer.parseInt(request.getParameter("rnum"));
         
-      conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
-      // Connection 객체가 생성되면 SQL 문을 데이터베이스로 전송하기 위함
-      stmt=conn.createStatement();
+        try{
+            
+            // Driver로부터 데이터베이스와의 Connection을 얻기 위함
+            String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
+            String dbUser ="cloud"; //mysql id
+            String dbPass ="5678"; //mysql password
+            String query ="SELECT * FROM PRECIPE WHERE RNUM=" + rnum + ";"; //query
+        
+            conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
-      // user 테이블로부터 사용자 아이디와 패스워드 정보 추출
-       rs = stmt.executeQuery(query);
+            // Connection 객체가 생성되면 SQL 문을 데이터베이스로 전송하기 위함
+            stmt=conn.createStatement();
 
-       // out.print(RECIPE.replace("\r\n","<br>"));
+            //if(rs.next()){
+            //    total = rs.getInt(1);
+            //}
 
-      if(rs.next()){
-        RNUM=rs.getString(1);
-        WEATHER=rs.getString(2);
-        CATE=rs.getString(3);
-        TITLE=rs.getString(4);
-        TIME=rs.getString(7);
-        RECIPE=rs.getString(8);
-        INGRE=rs.getString(9);
-      }
+            // user 테이블로부터 사용자 아이디와 패스워드 정보 추출
+            rs = stmt.executeQuery(query);
 
-  } catch(SQLException ex) {
-    out.println(ex.getMessage());
-    ex.printStackTrace();
-  } finally {
-    // Close Statement
-    if (rs !=null) try { rs.close(); } catch(SQLException ex) {}
-    if (stmt !=null) try { stmt.close(); } catch(SQLException ex) {}
-    // Close Connection
-    if (conn !=null) try { conn.close(); } catch(SQLException ex) {}
-}
-  %>
+                if(rs.next()){
+                    //int rnum = rs.getInt("rnum");
+                    String title = rs.getString("title");
+                    //String id = rs.getString("id");
+                    String time = rs.getString("time");
+                    int view = rs.getInt("view");
+                    String ingre = rs.getString("ingre");
+                    String recipe = rs.getString("recipe");
+                    String cate = rs.getString("cate");
+                    String weather = rs.getString("weather");
+            // TODO
+%>
 
-  <body>
-    <table>
-      <tr>
-        <td>
-          <table width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr>
-              <td>RECIPE</td>
-            </tr>
-        </td>
-      </tr>
+
+<html>
+    <head>
+    <link href="style.css" rel="stylesheet" type="precipeko.css">
+    <title>한식</title>
+    </head>
+    <body style="background:rgb(77, 76, 76);">
+
+    <div class="head" style="
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(6px);
+        padding: 0.8rem;
+        display: flex;
+        justify-content: space-between;
+    ">
+        <h3 style="margin: 0;
+            font-size: 2.5rem;
+            color: white;
+        ">
+            세상에 나쁜 요리는 없다
+        </h3>
+        <div class="menu" style="
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 1.5rem;
+        ">
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:white;
+                cursor:pointer;
+            ">RECIPE</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:white;
+                cursor:pointer;
+            ">OWN RECIPE</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:white;
+                cursor:pointer;
+            ">RANKING</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:white;
+                cursor:pointer;"
+            onClick=location.href='profile.html'>PROFILE</a>
+        </div>
+    </div>
+    
+            <table style="
+                width=100%;
+                cellpadding=0;
+                cellspacing=0;
+                border=0;
+                text-align: center;
+                margin: auto;
+                margin-top: 60px;
+                font-size: 1.4rem;
+            ">
+     <tr style="text-align:center;">
+      <td>내 용</td>
+     </tr>
     </table>
-<form action="changeprecipe_ok.jsp" method="post">
-    <table>
-      <tr>
-        <td>&nbsp;</td>
-        <td align="center">레시피 번호</td>
-        <td><%=RNUM%><input type=hidden name="RNUM" size="50" value="<%=RNUM%>"></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr height="1" bgcolor="#dddddd">
-        <td colspan="4"></td>
-      </tr>
-      
-      <tr>
-        <td>&nbsp;</td>
-        <td align="center">제목</td>
-        <td><input type=text name="TITLE" size="50" value="<%=TITLE%>"></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr height="1" bgcolor="#dddddd">
-        <td colspan="4"></td>
-      </tr>
+   <table style="
+                width=200%;
+                cellpadding=0;
+                cellspacing=0;
+                border=0;
+                text-align: center;
+                margin: auto;
+                margin-top: 60px;
+                font-size: 1.4rem;
+            ">
+     <tr>
+      <td align="center" width="400">글번호</td>
+      <td width="319"><%=rnum%></td>
+     </tr>
+    <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
+    <tr>
+      <td align="center" width="76">제목</td>
+      <td><input type="text" value="title"></td>
+     </tr>
+    <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 
-      <tr>
-        <td>&nbsp;</td>
-        <td align="center">소요시간 (분)</td>
-        <td><input type=text name="TIME" size="50" value="<%=TIME%>"></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr height="1" bgcolor="#dddddd">
-        <td colspan="4"></td>
-      </tr>
+      <td align="center" width="76">소요시간</td>
+      <td><input type="text" value="<%=time%>"></td>
+     </tr>
+      <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 
-      <tr>
-        <td>&nbsp;</td>
-        <td align="center">카테고리</td>
+      <td align="center" width="76">카테고리</td>
         <td>
-        <input type="radio" name="CATE" value="<%=CATE%>"> 한식
-        <input type="radio" name="CATE" value="<%=CATE%>"> 중식
-        <input type="radio" name="CATE" value="<%=CATE%>"> 양식
-        <input type="radio" name="CATE" value="<%=CATE%>"> 일식
+        <input type="radio" name="cate" value="<%=cate%>"> 한식
+        <input type="radio" name="cate" value="<%=cate%>"> 중식
+        <input type="radio" name="cate" value="<%=cate%>"> 양식
+        <input type="radio" name="cate" value="<%=cate%>"> 일식
         </td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr height="1" bgcolor="#dddddd">
-        <td colspan="4"></td>
-      </tr>
-
-      <tr>
-        <td>&nbsp;</td>
-        <td align="center">날씨</td>
-        <td>
-        <input type="radio" name="WEATHER" value="<%=WEATHER%>"> 맑음
-        <input type="radio" name="WEATHER" value="<%=WEATHER%>"> 흐림
-        <input type="radio" name="WEATHER" value="<%=WEATHER%>"> 비
-        <input type="radio" name="WEATHER" value="<%=WEATHER%>"> 눈
-        <input type="radio" name="WEATHER" value = "<%=WEATHER%>"> 안개
-        </td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr height="1" bgcolor="#dddddd">
-        <td colspan="4"></td>
-      </tr>
-
-      <tr>
-        <td>&nbsp;</td>
-        <td align="center">재료</td>
-        <td><input type=text name="INGRE" size="50" maxlength="50" value="<%=INGRE%>"></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr height="1" bgcolor="#dddddd">
-        <td colspan="4"></td>
-      </tr>
-
-      <tr>
-        <td>&nbsp;</td>
-        <td><input type=textarea name="RECIPE" value="<%=RECIPE.replace("\r\n","<br>")%>"></textarea></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr height="1" bgcolor="#dddddd">
-        <td colspan="4"></td>
-      </tr>
-      
-      <tr align="center">
-        <td>&nbsp;</td>
-        <td colspan="2">
-          <input type=submit value="레시피 수정"> 
-          <input type=button value="취소" onClick="location.href='main.html'" >
-        <td>&nbsp;</td>
-      </tr>
-    </table>
-    </td>
     </tr>
-    </table>
-    </form>
-  </body>
-   
+    <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 
-  </html>
+      <td align="center" width="76">카테고리</td>
+        <td>
+        <input type="radio" name="weather" value="<%=weather%>"> 맑음
+        <input type="radio" name="weather" value="<%=weather%>"> 흐림
+        <input type="radio" name="weather" value="<%=weather%>"> 비
+        <input type="radio" name="weather" value="<%=weather%>"> 눈
+        <input type="radio" name="weather" value = "<%=weather%>"> 안개
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr height="1" bgcolor="#dddddd">
+        <td colspan="4"></td>
+      </tr>
+
+    <tr>
+      <td align="center" width="76">조회수</td>
+      <td width="319"><%=view%></td>
+     </tr>
+     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr><tr>
+      <td align="center" width="76">재료</td>
+      <td><input type="text" value="<%=ingre%>"></td>
+     </tr>
+     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
+                <tr>
+
+                   <td><input type=textarea value="<%=recipe%>.replace"></textarea></td>
+                </tr>
+
+
+<%
+            
+            }
+    } catch(SQLException ex) {
+        out.println(ex.getMessage());
+        ex.printStackTrace();
+    }
+%>
+
+     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
+     <tr height="1" bgcolor="#82B5DF"><td colspan="4" width="407"></td></tr>
+     <tr align="center">
+      <td width="0">&nbsp;</td>
+      <td colspan="2" width="399">
+   <input type=button value="수정" onClick=location.href='changeprecipe_ok.jsp'>
+   <input type=button value="취소" onClick=location.href='precipe_list.jsp'>
+      <td width="0">&nbsp;</td>
+     </tr>
+    </table>
+            
+
+    </body>
+</html>
