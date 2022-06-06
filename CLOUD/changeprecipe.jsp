@@ -17,12 +17,22 @@
   <%
   String id=(String)session.getAttribute("id");
 
+  String RNUM="";
   String TITLE="";
   String TIME="";
   String INGRE="";
   String RECIPE="";
-  String CATE="";
   String WEATHER="";
+  String CATE="";
+  //String KOREA="";
+  //String CHINESE="";
+  //String WESTERN="";
+  //String JAPANESE="";
+  //String SUNNY="";
+  //String CLOUD="";
+  //String RAIN="";
+  //String SNOW="";
+  //String FOG="";
 //  int indx = Integer.parseInt(requset.getParameter("idx"));
 
   Class.forName("com.mysql.cj.jdbc.Driver"); 
@@ -35,7 +45,7 @@
       String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
       String dbUser ="cloud"; //mysql id
       String dbPass ="5678"; //mysql password
-      String query ="select * from CLIENT WHERE ID = '"+id+"'"; //query
+      String query ="select * from PRECIPE WHERE ID = '"+id+"'"; //query
         
       conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
@@ -45,7 +55,10 @@
       // user 테이블로부터 사용자 아이디와 패스워드 정보 추출
        rs = stmt.executeQuery(query);
 
+       // out.print(RECIPE.replace("\r\n","<br>"));
+
       if(rs.next()){
+        RNUM=rs.getString(1);
         WEATHER=rs.getString(2);
         CATE=rs.getString(3);
         TITLE=rs.getString(4);
@@ -79,6 +92,15 @@
     </table>
 <form action="changeprecipe_ok.jsp" method="post">
     <table>
+      <tr>
+        <td>&nbsp;</td>
+        <td align="center">레시피 번호</td>
+        <td><%=RNUM%><input type=hidden name="RNUM" size="50" value="<%=RNUM%>"></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr height="1" bgcolor="#dddddd">
+        <td colspan="4"></td>
+      </tr>
       
       <tr>
         <td>&nbsp;</td>
@@ -143,7 +165,7 @@
 
       <tr>
         <td>&nbsp;</td>
-        <td><textarea name="RECIPE" value="<%=RECIPE%>"></textarea></td>
+        <td><input type=textarea name="RECIPE" value="<%=RECIPE.replace("\r\n","<br>")%>"></textarea></td>
         <td>&nbsp;</td>
       </tr>
       <tr height="1" bgcolor="#dddddd">
