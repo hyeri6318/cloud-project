@@ -112,10 +112,6 @@
                     작성한 레시피</h1>
 
             <table style="
-                width=80%;
-                cellpadding=0;
-                cellspacing=0;
-                border=0;
                 text-align: center;
                 margin: auto;
                 margin-top: 60px;

@@ -40,14 +40,14 @@
 
                 if(rs.next()){
                     //int rnum = rs.getInt("rnum");
-                    String title = rs.getString("title");
+                    String title = rs.getString("TITLE");
                     //String id = rs.getString("id");
-                    String time = rs.getString("time");
-                    int view = rs.getInt("view");
-                    String ingre = rs.getString("ingre");
-                    String recipe = rs.getString("recipe");
-                    String cate = rs.getString("cate");
-                    String weather = rs.getString("weather");
+                    String time = rs.getString("TIME");
+                    int view = rs.getInt("VIEW");
+                    String ingre = rs.getString("INGRE");
+                    String recipe = rs.getString("RECIPE");
+                    String cate = rs.getString("CATE");
+                    String weather = rs.getString("WEATHER");
             // TODO
 %>
 
@@ -58,7 +58,6 @@
     <title>한식</title>
     </head>
     <body style="background:rgb(77, 76, 76);">
-
     <div class="head" style="
         position: sticky;
         top: 0;
@@ -110,10 +109,7 @@
     </div>
     
             <table style="
-                width=100%;
-                cellpadding=0;
-                cellspacing=0;
-                border=0;
+            
                 text-align: center;
                 margin: auto;
                 margin-top: 60px;
@@ -123,29 +119,27 @@
       <td>내 용</td>
      </tr>
     </table>
+    <form action="changeprecipe_ok.jsp" method="post">
    <table style="
-                width=200%;
-                cellpadding=0;
-                cellspacing=0;
-                border=0;
                 text-align: center;
                 margin: auto;
                 margin-top: 60px;
                 font-size: 1.4rem;
             ">
      <tr>
-      <td align="center" width="400">글번호</td>
-      <td width="319"><%=rnum%></td>
-     </tr>
+        <td align="center" width="400">글번호</td>
+        <td width="319"><%=rnum%></td>
+        <input type="hidden" name="rnum" value=<%=rnum%> />
+       </tr>
     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
     <tr>
       <td align="center" width="76">제목</td>
-      <td><input type="text" value="title"></td>
+      <td><input type="text" name="title" value="<%=title%>"></td>
      </tr>
     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 
       <td align="center" width="76">소요시간</td>
-      <td><input type="text" value="<%=time%>"></td>
+      <td><input type="text" name="time" value="<%=time%>"></td>
      </tr>
       <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 
@@ -176,15 +170,16 @@
     <tr>
       <td align="center" width="76">조회수</td>
       <td width="319"><%=view%></td>
+      <input type="hidden" name="view" value=<%=view%> />
      </tr>
      <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr><tr>
       <td align="center" width="76">재료</td>
-      <td><input type="text" value="<%=ingre%>"></td>
+      <td><input type="text" name="ingre" value="<%=ingre%>"></td>
      </tr>
      <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
                 <tr>
 
-                   <td><input type=textarea value="<%=recipe%>.replace"></textarea></td>
+                   <td><input type=textarea name="recipe" value="<%=recipe%>"></textarea></td>
                 </tr>
 
 
@@ -202,12 +197,12 @@
      <tr align="center">
       <td width="0">&nbsp;</td>
       <td colspan="2" width="399">
-   <input type=button value="수정" onClick=location.href='changeprecipe_ok.jsp'>
+   <input type=submit value="레시피 수정">
    <input type=button value="취소" onClick=location.href='precipe_list.jsp'>
       <td width="0">&nbsp;</td>
      </tr>
     </table>
             
-
+        </form>
     </body>
 </html>
