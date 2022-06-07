@@ -1,208 +1,39 @@
-<%@ page contentType ="text/html; charset=utf-8" %>
-<%@ page import ="java.sql.DriverManager" %>
-<%@ page import ="java.sql.Connection" %>
-<%@ page import ="java.sql.Statement" %>
-<%@ page import ="java.sql.ResultSet" %>
-<%@ page import ="java.sql.SQLException" %>
-<%@ page import ="java.util.ArrayList" %>
-<%@ page import ="java.lang.String" %>
-<%@ page import ="java.sql.*"%>
-<% request.setCharacterEncoding("utf-8"); %>
+body{
+    background:rgb(77, 76, 76);
+}
 
-<%
-        // 업로드할 클래스 이름 지정
-        Class.forName("com.mysql.cj.jdbc.Driver"); 
-        Connection conn =null;
-        Statement stmt =null;
-        ResultSet rs =null;
-        int rnum = Integer.parseInt(request.getParameter("rnum"));
-        
+.head{
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(6px);
+    padding: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+}
 
-        try{
-            
-            // Driver로부터 데이터베이스와의 Connection을 얻기 위함
-            String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
-            String dbUser ="cloud"; //mysql id
-            String dbPass ="5678"; //mysql password
-            String query ="SELECT * FROM PRECIPE WHERE RNUM=" + rnum + ";"; //query
-        
-            conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+.menu{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 1.5rem;
+}
 
-            // Connection 객체가 생성되면 SQL 문을 데이터베이스로 전송하기 위함
-            stmt=conn.createStatement();
+.form-group{
+    width:350px;
+    margin-left:auto;
+    margin-right:auto;
+    color: white;
+}
 
-            //if(rs.next()){
-            //    total = rs.getInt(1);
-            //}
-
-            // user 테이블로부터 사용자 아이디와 패스워드 정보 추출
-            rs = stmt.executeQuery(query);
-
-                if(rs.next()){
-                    //int rnum = rs.getInt("rnum");
-                    String title = rs.getString("TITLE");
-                    //String id = rs.getString("id");
-                    String time = rs.getString("TIME");
-                    int view = rs.getInt("VIEW");
-                    String ingre = rs.getString("INGRE");
-                    String recipe = rs.getString("RECIPE");
-                    String cate = rs.getString("CATE");
-                    String weather = rs.getString("WEATHER");
-            // TODO
-%>
-
-
-<html>
-    <head>
-    <link href="style.css" rel="stylesheet" type="precipeko.css">
-    <title>한식</title>
-    </head>
-    <body style="background:rgb(77, 76, 76);">
-    <div class="head" style="
-        position: sticky;
-        top: 0;
-        left: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(6px);
-        padding: 0.8rem;
-        display: flex;
-        justify-content: space-between;
-    ">
-        <h3 style="margin: 0;
-            font-size: 2.5rem;
-            color: white;
-        ">
-            세상에 나쁜 요리는 없다
-        </h3>
-        <div class="menu" style="
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            font-size: 1.5rem;
-        ">
-            <a class="btn" style="
-                text-decoration: none;
-                margin-left:50px;
-                color:white;
-                cursor:pointer;
-            ">RECIPE</a>
-            <a class="btn" style="
-                text-decoration: none;
-                margin-left:50px;
-                color:white;
-                cursor:pointer;
-            ">OWN RECIPE</a>
-            <a class="btn" style="
-                text-decoration: none;
-                margin-left:50px;
-                color:white;
-                cursor:pointer;
-            ">RANKING</a>
-            <a class="btn" style="
-                text-decoration: none;
-                margin-left:50px;
-                color:white;
-                cursor:pointer;"
-            onClick=location.href='profile.html'>PROFILE</a>
-        </div>
-    </div>
-    
-            <table style="
-            
-                text-align: center;
-                margin: auto;
-                margin-top: 60px;
-                font-size: 1.4rem;
-            ">
-     <tr style="text-align:center;">
-      <td>내 용</td>
-     </tr>
-    </table>
-    <form action="changeprecipe_ok.jsp" method="post">
-   <table style="
-                text-align: center;
-                margin: auto;
-                margin-top: 60px;
-                font-size: 1.4rem;
-            ">
-     <tr>
-        <td align="center" width="400">글번호</td>
-        <td width="319"><%=rnum%></td>
-        <input type="hidden" name="rnum" value=<%=rnum%> />
-       </tr>
-    <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
-    <tr>
-      <td align="center" width="76">제목</td>
-      <td><input type="text" name="title" value="<%=title%>"></td>
-     </tr>
-    <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
-
-      <td align="center" width="76">소요시간</td>
-      <td><input type="text" name="time" value="<%=time%>"></td>
-     </tr>
-      <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
-
-      <td align="center" width="76">카테고리</td>
-        <td>
-        <input type="radio" name="cate" value="<%=cate%>"> 한식
-        <input type="radio" name="cate" value="<%=cate%>"> 중식
-        <input type="radio" name="cate" value="<%=cate%>"> 양식
-        <input type="radio" name="cate" value="<%=cate%>"> 일식
-        </td>
-    </tr>
-    <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
-
-      <td align="center" width="76">카테고리</td>
-        <td>
-        <input type="radio" name="weather" value="<%=weather%>"> 맑음
-        <input type="radio" name="weather" value="<%=weather%>"> 흐림
-        <input type="radio" name="weather" value="<%=weather%>"> 비
-        <input type="radio" name="weather" value="<%=weather%>"> 눈
-        <input type="radio" name="weather" value = "<%=weather%>"> 안개
-        </td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr height="1" bgcolor="#dddddd">
-        <td colspan="4"></td>
-      </tr>
-
-    <tr>
-      <td align="center" width="76">조회수</td>
-      <td width="319"><%=view%></td>
-      <input type="hidden" name="view" value=<%=view%> />
-     </tr>
-     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr><tr>
-      <td align="center" width="76">재료</td>
-      <td><input type="text" name="ingre" value="<%=ingre%>"></td>
-     </tr>
-     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
-                <tr>
-
-                   <td><input type=textarea name="recipe" value="<%=recipe%>"></textarea></td>
-                </tr>
-
-
-<%
-            
-            }
-    } catch(SQLException ex) {
-        out.println(ex.getMessage());
-        ex.printStackTrace();
-    }
-%>
-
-     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
-     <tr height="1" bgcolor="#82B5DF"><td colspan="4" width="407"></td></tr>
-     <tr align="center">
-      <td width="0">&nbsp;</td>
-      <td colspan="2" width="399">
-   <input type=submit value="레시피 수정">
-   <input type=button value="취소" onClick=location.href='precipe_list.jsp'>
-      <td width="0">&nbsp;</td>
-     </tr>
-    </table>
-            
-        </form>
-    </body>
-</html>
+.btn.btn-primary{
+    border:1px solid #505352;
+    background-color: #505352;
+    margin-right: auto;
+    margin-left:  auto;
+    width:100px;
+    color: white;
+    cursor:pointer;
+}

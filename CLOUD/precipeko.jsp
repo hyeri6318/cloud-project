@@ -10,7 +10,7 @@
 
 <html>
     <head>
-    <link href="style.css" rel="stylesheet" type="precipeko.css">
+    <link href="style.css" rel="stylesheet">
     <title>한식</title>
     </head>
     <body style="background:rgb(77, 76, 76);">
@@ -60,12 +60,6 @@
                 text-decoration: none;
                 margin-left:50px;
                 color:white;
-                cursor:pointer;"            
-            onClick=location.href='precipeuproad.html'>UPROAD PRECIPE</a>
-            <a class="btn" style="
-                text-decoration: none;
-                margin-left:50px;
-                color:white;
                 cursor:pointer;"
             onClick=location.href='profile.html'>PROFILE</a>
         </div>
@@ -83,7 +77,7 @@
             String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
             String dbUser ="tester"; //mysql id
             String dbPass ="1234"; //mysql password
-            String query ="select RNUM, TITLE, ID, TIME, VIEW from PRECIPE where CATE='한식' order by VIEW DESC"; //query
+            String query ="select RNUM, TITLE, ID, TIME, VIEW from PRECIPE where CATE='korea' order by VIEW DESC"; //query
         
             conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
@@ -103,28 +97,43 @@
 
             <h1 style="
                     margin-top: 60px;
-                    margin-bottom: 100px;
+                    margin-bottom: 60px;
                     margin-left: 30px;
                     color: white;
                 ">
                     KOREAN FOODS</h1>
 
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr><td colspan="4" height="5"></td></tr>
+                <tr align="center">
+                    <td><input type=button value="글쓰기" style="
+                    border: 1px solid #505352;
+                    background-color: #505352;
+                    margin-left: 72%;
+                    width: 100px;
+                    height: 50px;
+                    color: white;
+                    cursor: pointer;
+                " onClick=location.href='precipeuproad.html'></td>
+                </tr>
+                
+            </table>
+
             <table style="
-                width=80%;
-                cellpadding=0;
-                cellspacing=0;
-                border=0;
+                width: 80%;
                 text-align: center;
                 margin: auto;
-                margin-top: 60px;
+                margin-top: 30px;
                 font-size: 1.4rem;
             ">
-            <tr height="5"><td width="5"></td></tr>
+            <tr height="1" bgcolor="#D2D2D2"><td colspan="6"></td></tr>
+            <tr height="1"><td width="5"></td></tr>
             <td width="10%">번호</td>
             <td width="60%">제목</td>
             <td width="10%">작성자</td>
-            <td width="10%">소유시간</td>
+            <td width="10%">소요시간</td>
             <td width="10%">조회수</td>
+            <tr height="1" bgcolor="#D2D2D2"><td colspan="6"></td></tr>
 
     <%
             if(total!=0){
@@ -162,13 +171,6 @@
             ex.printStackTrace();
         }
     %>
-                
-            </table>
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr><td colspan="4" height="5"></td></tr>
-                <tr align="center">
-                    <td><input type=button value="글쓰기" onClick=location.href='precipeuproad.html'></td>
-                </tr>
                 
             </table>
     </body>

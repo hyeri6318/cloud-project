@@ -20,6 +20,13 @@ body{
     justify-content: space-between;
 }
 
+.btn{
+    text-decoration: none;
+    margin-left:50px;
+    color:white;
+    cursor:pointer;
+}
+
 .menu{
     padding: 0;
     margin: 0;
@@ -31,7 +38,32 @@ body{
     list-style:none;
     text-decoration: none;
     border-collapse: collapse; 
-    color:rgb(121, 14, 170);
+    color:#fff;
+}
+
+.category{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.category a{
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    font-size: 1.4rem;
+}
+
+.category a:first-child{
+    margin-left: 0;
+}
+
+.category a.on{
+    background: #000;
+    color: #fff;
 }
 
 .bt_wrap{
@@ -67,16 +99,4 @@ body{
     width:100px;
     color: white;
     cursor:pointer;
-}
-
-.board_wrap{
-    width: 900px;
-    margin: 100px auto;
-}
-
-.form-group{
-    width:350px;
-    margin-left:auto;
-    margin-right:auto;
-    color:black;
 }

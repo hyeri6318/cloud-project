@@ -53,8 +53,8 @@
 
 <html>
     <head>
-    <link href="style.css" rel="stylesheet" type="precipeko.css">
-    <title>한식</title>
+    <link href="style.css" rel="stylesheet">
+    <title>양식</title>
     </head>
     <body style="background:rgb(77, 76, 76);">
 
@@ -109,10 +109,7 @@
     </div>
     
             <table style="
-                width=100%;
-                cellpadding=0;
-                cellspacing=0;
-                border=0;
+                width: 70%;
                 text-align: center;
                 margin: auto;
                 margin-top: 60px;
@@ -123,15 +120,13 @@
      </tr>
     </table>
    <table style="
-                width=200%;
-                cellpadding=0;
-                cellspacing=0;
-                border=0;
+                width: 70%;
                 text-align: center;
                 margin: auto;
                 margin-top: 60px;
                 font-size: 1.4rem;
             ">
+    <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
      <tr>
       <td align="center" width="400">글번호</td>
       <td width="319"><%=rnum%></td>
@@ -161,10 +156,24 @@
       <td width="319"><%=ingre%></td>
      </tr>
      <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
+     </table>
+     <table style="
+                width: 70%;
+                margin: auto;
+                font-size: 1.4rem;">          
                 <tr>
 
                    <td width="399" colspan="1" height="200"><%=recipe %>
                 </tr>
+                <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
+    </table>
+    <table style="
+                width: 70%;
+                text-align: center;
+                margin: auto;
+                margin-top: 30px;
+                font-size: 1.4rem;
+            ">
 
 
 <%
@@ -177,16 +186,52 @@
     }
 %>
 
-     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
-     <tr height="1" bgcolor="#82B5DF"><td colspan="4" width="407"></td></tr>
      <tr align="center">
-      <td width="0">&nbsp;</td>
       <td colspan="2" width="399">
-	<input type=button value="답글">
-	<input type=button value="목록" onClick=location.href='precipewe.jsp'>
-	<input type=button value="수정">
-	<input type=button value="삭제">
-      <td width="0">&nbsp;</td>
+	<input type=button value="답글" style="
+        border: 1px solid #505352;
+        background-color: #505352;
+        margin-right: auto;
+        margin-left: auto;
+        margin: 10px;
+        width: 100px;
+        height: 50px;
+        color: white;
+        cursor: pointer;
+    ">
+	<input type=button value="목록" onClick=location.href='precipewe.jsp' style="
+        border: 1px solid #505352;
+        background-color: #505352;
+        margin-right: auto;
+        margin-left: auto;
+        margin: 10px;
+        width: 100px;
+        height: 50px;
+        color: white;
+        cursor: pointer;
+    ">
+	<input type=button value="수정"style="
+        border: 1px solid #505352;
+        background-color: #505352;
+        margin-right: auto;
+        margin-left: auto;
+        margin: 10px;
+        width: 100px;
+        height: 50px;
+        color: white;
+        cursor: pointer;
+    ">
+	<input type=button value="삭제"style="
+        border: 1px solid #505352;
+        background-color: #505352;
+        margin-right: auto;
+        margin-left: auto;
+        margin: 10px;
+        width: 100px;
+        height: 50px;
+        color: white;
+        cursor: pointer;
+    ">
      </tr>
     </table>
 <%
@@ -207,11 +252,8 @@
         rs = stmt.executeQuery(sqlCom);
 
 %>
-    <table style="
-                width=80%;
-                cellpadding=0;
-                cellspacing=0;
-                border=0;
+            <table style="
+                width:70%;
                 text-align: center;
                 margin: auto;
                 margin-top: 60px;
@@ -222,8 +264,8 @@
                 <form action="/precipewe3.jsp" method="post">
                 <input type="hidden" name="rnum" value=<%=rnum%> />
                 <textarea name="comments" style="
-                    display: block;
-                    width: 800px;
+                    <%-- display: block; --%>
+                    width: calc(100% - 1px);
                     height: 50px;
                     padding: 15px;
                     margin: auto;
@@ -232,7 +274,18 @@
                     resize: vertical;
                     white-space: pre;
                 "></textarea>
-                <input type="submit" value="저장">
+                <input type="submit" value="저장" style="
+                    border: 1px solid #505352;
+                    background-color: #505352;
+                    margin-right: auto;
+                    margin-left: auto;
+                    margin: 10px;
+                    width: 100px;
+                    height: 50px;
+                    color: white;
+                    float: right;
+                    cursor: pointer;
+                ">
                 </form>
 
 
@@ -245,12 +298,11 @@
                 String id = rs.getString("id");
 
 %>
-
+            <tr height="1" bgcolor="#D2D2D2"><td colspan="6"></td></tr>
             <tr height="25" align="center" >
 	            <td align="center"><%=ctime %></td>
 	            <td align="left"><%=comments %></td>
 	            <td align="center"><%=id %></td>
-	            <td>&nbsp;</td>
             </tr>
             <tr height="1" bgcolor="#D2D2D2"><td colspan="6"></td></tr>
 
@@ -261,7 +313,7 @@
 
             rs.close();
             stmt.close();
-            conn.close();
+            conn.close();   
 
     } catch(SQLException ex) {
         out.println(ex.getMessage());
