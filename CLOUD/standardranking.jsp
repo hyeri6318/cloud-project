@@ -68,7 +68,7 @@
 		            while (rs.next()) {
                     %>
 				<td>
-					<a href=<%="http://49.50.164.44/redirectHandler.jsp?num=" + rs.getString("num")%>>
+					<a href=<%="http://49.50.161.25:8080//redirectHandler.jsp?num=" + rs.getString("num")%>>
                     <img src='<%=rs.getString("picture")%>' width='300' height='300'><br>
                     <%=rs.getString("recipetitle")%><br>
                     조회수<%=rs.getInt("views")%><br>

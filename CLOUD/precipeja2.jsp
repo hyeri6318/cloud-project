@@ -179,6 +179,7 @@
 <%
                 query="UPDATE PRECIPE SET VIEW=" + view + " WHERE RNUM=" + rnum + ";";
                 stmt.executeUpdate(query);
+
             }
     } catch(SQLException ex) {
         out.println(ex.getMessage());
@@ -308,8 +309,6 @@
 
 <%
             }
-
-            
 
             rs.close();
             stmt.close();

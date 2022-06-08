@@ -72,6 +72,7 @@
             String sql1="UPDATE PRECIPE SET WEATHER = '"+weather+"', TITLE = '"+title+"' , TIME= '"+time+"',RECIPE='"+recipe+"', INGRE= '"+ingre+"' WHERE RNUM=" + rnum + ";";
             int count1 = stmt.executeUpdate(sql1);
 
+            response.sendRedirect("precipe_list.jsp");
 
         rs.close();
         stmt.close();

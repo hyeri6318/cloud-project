@@ -154,7 +154,8 @@
         <td>&nbsp;</td>
         <td colspan="2">
           <input type=submit value="회원 정보 수정">
-          <input type=button value="탈퇴"  onClick="location.href='deleteprofile.html'"> 
+          <input type=button value="탈퇴"  onClick="location.href='deleteprofile.html'">
+          <input type=button value="개인 레시피 조회"  onClick="location.href='precipe_list.jsp'">  
           <input type=button value="취소" onClick="location.href='main.html'" >
         <td>&nbsp;</td>
       </tr>

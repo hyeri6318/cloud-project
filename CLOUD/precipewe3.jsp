@@ -57,6 +57,7 @@
                     int count4 = stmt.executeUpdate(sql);
                 }
             }
+            response.sendRedirect("/precipewe.jsp");
 
         rs.close();
         stmt.close();

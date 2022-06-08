@@ -57,7 +57,7 @@
                     int count4 = stmt.executeUpdate(sql);
                 }
             }
-
+        response.sendRedirect("/precipeja.jsp");
         rs.close();
         stmt.close();
         conn.close();
@@ -65,6 +65,7 @@
         out.println(ex.getMessage());
         ex.printStackTrace();
     }
+
 %>
 </body>
 </html>

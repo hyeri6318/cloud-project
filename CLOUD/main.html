@@ -3,31 +3,34 @@
     <head>
         <meta charset="utf-8">
         <title>세나요</title>
-        <link rel="stylesheet" type="text/css" href="index.css">
+        <link rel="stylesheet" type="text/css" href="main.css">
     </head>
 
     <body>
-    <form method="post" name="form">
-    <div class="wrap">
-        <div class="header">
-                    <ul class="nav">
-                        <div class="intro_text">
-                            <h2> 세상에 나쁜 요리는 없다 </h2>
-                        </div>
-                        <a class="btn" onCLick = "location.href='standard.html'">RECIPE</a>
-                        <a class="btn" onClick ="location.href='precipe.html'">OWN RECIPE</a>
-                        <a class="btn" onclick="location.href='standardranking.jsp'">RANKING</a>
-                        <a class="btn" onClick="location.href='profile.jsp'">PROFILE</a>
-                        <a class="btn" onClick="location.href='precipe_list.jsp'">CHECK</a>
-                    </ul>
+        <form method="get" action="search.jsp">
+            <div class="head">
+                <h3 style="
+                    margin: 0;
+                    font-size: 2.5rem;
+                    color: black;
+                ">
+                    <h2> <a class="btn" onCLick = "location.href='index.html'">세상에 나쁜 요리는 없다 </a></h2>
+                </h3>
+                <div class="menu">
+                    <a class="btn" onCLick = "location.href='standard.html'">RECIPE</a>
+                    <a class="btn" onClick ="location.href='precipe.html'">OWN RECIPE</a>
+                    <a class="btn" onclick="location.href='standardranking.jsp'">RANKING</a>
+                    <a class="btn" onClick="location.href='profile.jsp'">PROFILE</a>
                 </div>
+            </div>
+            <div style="height: 100px;">&nbsp;</div>
 
+
+            <div class="wrap">
                 <div class="body">
                     <div class="searchArea">
-                        <form>
-                            <input type="search" placeholder="검색하고 싶은 재료를 입력하세요">
-                            <span>검색</span>
-                        </form>
+                        <input type="search" name="search" placeholder="검색하고 싶은 재료를 입력하세요">
+                        <button type="submit" class="btn_search">검색</button>
                     </div>
 
                     <div class="weatherArea">

@@ -57,6 +57,7 @@
                     int count4 = stmt.executeUpdate(sql);
                 }
             }
+            response.sendRedirect("/precipeko.jsp");
 
         rs.close();
         stmt.close();

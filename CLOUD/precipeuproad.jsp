@@ -61,6 +61,9 @@
             String sql2="insert into PRECIPE(WEATHER,CATE,TITLE,ID,TIME,RECIPE,INGRE) values";
             sql2+="('"+WEATHER+"','"+CATE+"','"+TITLE+"','"+id+"','"+TIME+"','"+RECIPE+"','"+INGRE+"')";
             int count2 = stmt.executeUpdate(sql2);
+
+             response.sendRedirect("precipe.html");
+        
             
         } catch(SQLException ex) {
             out.println(ex.getMessage());

@@ -74,9 +74,9 @@
         int total = 0; 
         try{
             // Driver로부터 데이터베이스와의 Connection을 얻기 위함
-            String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
-            String dbUser ="tester"; //mysql id
-            String dbPass ="1234"; //mysql password
+            String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
+            String dbUser ="cloud"; //mysql id
+            String dbPass ="5678"; //mysql password
             String query ="select RNUM, TITLE, ID, TIME, VIEW from PRECIPE where CATE='korea' order by VIEW DESC"; //query
         
             conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
