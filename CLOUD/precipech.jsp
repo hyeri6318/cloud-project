@@ -1,3 +1,7 @@
+<%-- 
+    담당자 : 이재혁
+    SFR-WM502 : 중식을 선택한 경우 레시피의 조회수에 따른 인기순위를 볼 수 있도록 한다.
+ --%>
 <%@ page contentType ="text/html; charset=utf-8" %>
 <%@ page import ="java.sql.DriverManager" %>
 <%@ page import ="java.sql.Connection" %>
@@ -13,24 +17,25 @@
     <link href="style.css" rel="stylesheet">
     <title>중식</title>
     </head>
-    <body style="background:rgb(77, 76, 76);">
-
+    <body style="background: white;">
+    <%-- 상단 바 메뉴 --%>
     <div class="head" style="
         position: sticky;
         top: 0;
         left: 0;
         right: 0;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(226, 226, 202, 0.80);
         backdrop-filter: blur(6px);
         padding: 0.8rem;
         display: flex;
         justify-content: space-between;
     ">
         <h3 style="margin: 0;
-            font-size: 2.5rem;
-            color: white;
-        ">
-            세상에 나쁜 요리는 없다
+                    font-size: 2.5rem;
+                    color: black;
+                    cursor:pointer;
+        "><a style="float: left;" onCLick = "location.href='main.html'">
+            세상에 나쁜 요리는 없다</a>
         </h3>
         <div class="menu" style="
             padding: 0;
@@ -41,27 +46,33 @@
             <a class="btn" style="
                 text-decoration: none;
                 margin-left:50px;
-                color:white;
-                cursor:pointer;
-            ">RECIPE</a>
+                color:black;
+                cursor:pointer;"
+            onCLick = "location.href='standard.html'">RECIPE</a>
             <a class="btn" style="
                 text-decoration: none;
                 margin-left:50px;
-                color:white;
-                cursor:pointer;
-            ">OWN RECIPE</a>
+                color:black;
+                cursor:pointer;"
+            onCLick = "location.href='precipe.html'">OWN RECIPE</a>
             <a class="btn" style="
                 text-decoration: none;
                 margin-left:50px;
-                color:white;
-                cursor:pointer;
-            ">RANKING</a>
+                color:black;
+                cursor:pointer;"
+            onclick="location.href='standardranking.jsp'">RANKING</a>
             <a class="btn" style="
                 text-decoration: none;
                 margin-left:50px;
-                color:white;
+                color:black;
                 cursor:pointer;"
             onClick=location.href='profile.html'>PROFILE</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+            onClick=location.href='logout.jsp'>LOGOUT</a>
         </div>
     </div>
 
@@ -74,9 +85,9 @@
         int total = 0; 
         try{
             // Driver로부터 데이터베이스와의 Connection을 얻기 위함
-            String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
-            String dbUser ="cloud"; //mysql id
-            String dbPass ="5678"; //mysql password
+            String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
+            String dbUser ="tester"; //mysql id
+            String dbPass ="1234"; //mysql password
             String query ="select RNUM, TITLE, ID, TIME, VIEW from PRECIPE where CATE='chinese' order by VIEW DESC"; //query
         
             conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
@@ -84,25 +95,18 @@
             // Connection 객체가 생성되면 SQL 문을 데이터베이스로 전송하기 위함
             stmt=conn.createStatement();
 
-            //if(rs.next()){
-            //    total = rs.getInt(1);
-            //}
-
             // user 테이블로부터 사용자 아이디와 패스워드 정보 추출
             rs = stmt.executeQuery(query);
-
-
-            // TODO
     %>
-
+            <%-- 한식 구현 --%>
             <h1 style="
                     margin-top: 60px;
                     margin-bottom: 60px;
                     margin-left: 30px;
-                    color: white;
+                    color: black;
                 ">
                     CHINESE FOODS</h1>
-
+            <%-- 글쓰기 버튼 구현 --%>
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr><td colspan="4" height="5"></td></tr>
                 <tr align="center">
@@ -119,6 +123,7 @@
                 
             </table>
 
+            <%-- 게시글 목록 구현 --%>
             <table style="
                 width: 80%;
                 text-align: center;
@@ -153,7 +158,10 @@
                     <tr height="25" align="center" >
 	                    
 	                    <td><%=rnum %></td>
-	                    <td align="left"><a href="precipech2.jsp?rnum=<%=rnum %>"><%=title %></td>
+	                    <td align="center"><a href="precipech2.jsp?rnum=<%=rnum %>" style="
+                        text-decoration: none;
+                        color: black;
+                        "><%=title %></td>
 	                    <td align="center"><%=id %></td>
 	                    <td align="center"><%=time %></td>
 	                    <td align="center"><%=view %></td>
@@ -171,7 +179,6 @@
             ex.printStackTrace();
         }
     %>
-                
             </table>
     </body>
 </html>

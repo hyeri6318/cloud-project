@@ -1,5 +1,5 @@
 body{
-    background:rgb(77, 76, 76);
+    background: white;
 }
 
 .head{
@@ -7,7 +7,7 @@ body{
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(226, 226, 202, 0.80);
     backdrop-filter: blur(6px);
     padding: 0.8rem;
     display: flex;

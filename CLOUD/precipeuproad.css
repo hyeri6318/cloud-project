@@ -1,6 +1,5 @@
 body{
-    background:rgb(77, 76, 76);
-    color:#fff;
+    background: white;
 }
 
 .intro_text{
@@ -15,7 +14,7 @@ body{
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(226, 226, 202, 0.80);
     backdrop-filter: blur(6px);
     padding: 0.8rem;
     display: flex;
@@ -25,7 +24,7 @@ body{
 .btn{
     text-decoration: none;
     margin-left:50px;
-    color:white;
+    color:black;
     cursor:pointer;
 }
 
@@ -40,7 +39,7 @@ body{
     list-style:none;
     text-decoration: none;
     border-collapse: collapse; 
-    color:#fff;
+    color:black;
 }
 
 .board_wrap{
