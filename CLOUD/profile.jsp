@@ -11,7 +11,7 @@
   <html>
 
   <head>
-    <title>게시판</title>
+    <title>세나요</title>
   </head>
 
   <%

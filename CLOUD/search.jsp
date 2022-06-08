@@ -54,9 +54,9 @@
 
 
                 try {
-                    String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
-                    String dbUser ="tester"; //mysql id
-                    String dbPass ="1234"; //mysql password
+                    String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
+                    String dbUser ="cloud"; //mysql id
+                    String dbPass ="5678"; //mysql password
 
                     //for(int k = 0; k <= i; k++){
                     //

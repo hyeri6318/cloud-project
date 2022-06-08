@@ -1,56 +1,85 @@
-<!DOCTYPE html>
-<html lang="ko">
+[changeprecipe_ok.jsp]
+<%@ page contentType ="text/html; charset=utf-8" %>
+<%@ page import ="java.sql.DriverManager" %>
+<%@ page import ="java.sql.Connection" %>
+<%@ page import ="java.sql.Statement" %>
+<%@ page import ="java.sql.ResultSet" %>
+<%@ page import ="java.sql.SQLException" %>
+<%@ page import ="java.util.ArrayList" %>
+<%@ page import = "java.sql.*" %>
+<%@ page import = "java.util.*" %>
+<% request.setCharacterEncoding("utf-8"); %>
+
+<html>
     <head>
-        <meta charset="utf-8">
-        <title>CHANGE PASSWORD</title>
-        <link rel="stylesheet" href="deleteprofile.css">
+        <title>세나요</title>
     </head>
 
     <body>
-        <div class="head">
-            <h3 style="
-                margin: 0;
-                font-size: 2.5rem;
-                color: white;
-            ">
-                세상에 나쁜 요리는 없다
-            </h3>
-        </div>
-        <div style="height: 100px;">&nbsp;</div>
-            <form action="changeprofile.jsp" method="post">
-                <p class="easy-login" align="center">PROFILE</p>
-            </form>
+
+<%      
+        int rnum = Integer.parseInt(request.getParameter("rnum"));
+        //String rnum = request.getParameter("rnum");
+        String id=(String)session.getAttribute("id");
+        String title = request.getParameter("title");
+        String time = request.getParameter("time");
+        //int view = request.getInt("view");
+        String ingre = request.getParameter("ingre");
+        String recipe= request.getParameter("recipe");
+
+        String korea = request.getParameter("korea");
+        String chinese = request.getParameter("chinese");
+        String japanese = request.getParameter("japanese");
+        String wetsern = request.getParameter("western");
+
+        //String weather = request.getParameter("sunny");
+        //String weather = request.getParameter("cloud");
+        //String weather = request.getParameter("fog");
+        //String weather = request.getParameter("rain");
+       // String weather = request.getParameter("snow");
+
+       String weather = request.getParameter("weather");
+
+        Class.forName("com.mysql.cj.jdbc.Driver"); 
+        Connection conn =null;
+        Statement stmt =null;
+        ResultSet rs =null;
+
         
 
-        <form>
-            
-        <div class="body">
-            <form method="post" name="form">
-                <div class="form-group">
-                    <p calss="ref" align="left">기존 비밀번호
-                        <input type="password" class="form-group" name="pps" required>
-                    </p>
-                </div>
+    try{
+        // Driver로부터 데이터베이스와의 Connection을 얻기 위함
+        String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
+        String dbUser ="cloud"; //mysql id
+        String dbPass ="5678"; //mysql password
+        String query ="SELECT * FROM PRECIPE WHERE RNUM=" + rnum + ";";
 
-                <div class="form-group">
-                    <p class="ref" align="left">변경 비밀번호
-                        <input type="password" class="form-group" name="nps1" required>
-                    </p>
-                </div>
+        conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
-                <div class="form-group">
-                    <p class="ref" align="left">변경 비밀번호 확인
-                        <input type="password" class="form-group" name="nps2" required>
-                    </p>
-                </div>
+        // Connection 객체가 생성되면 SQL 문을 데이터베이스로 전송하기 위함
+        stmt=conn.createStatement();
+        
+        // user 테이블로부터 사용자 아이디와 패스워드 정보 추출
+        rs = stmt.executeQuery(query);
+        
 
-                <div class="change-button">
-                    <div class="btn btn-primary">
-                        <input type="submit" value="CHANGE" class="btn btn-primary" onClick="form.action='changeprofile.jsp'">
-                    </div>
-                </div>
-            </form>
-        </div>
-        </form>
-    </body>
+            ArrayList<String> id_list = new ArrayList<String>();
+
+            while(rs.next()){
+                id_list.add(rs.getString("ID"));
+            }
+
+            String sql1="UPDATE PRECIPE SET WEATHER = '"+weather+"', TITLE = '"+title+"' , TIME= '"+time+"',RECIPE='"+recipe+"', INGRE= '"+ingre+"' WHERE RNUM=" + rnum + ";";
+            int count1 = stmt.executeUpdate(sql1);
+
+
+        rs.close();
+        stmt.close();
+        conn.close();
+    } catch(SQLException ex) {
+        out.println(ex.getMessage());
+        ex.printStackTrace();
+    }
+%>
+</body>
 </html>

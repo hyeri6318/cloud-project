@@ -19,9 +19,9 @@ Statement stmt =null;
 ResultSet rs =null;
 //try {
     // 2. DB에서 url을 찾아 그 행의 count를 1 증가
-    String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
-    String dbUser ="tester"; //mysql id
-    String dbPass ="1234"; //mysql password
+    String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
+    String dbUser ="cloud"; //mysql id
+    String dbPass ="5678"; //mysql password
     String query ="select * from recipe where num='" + cloumnnum + "';"; //query
     // Create DB Connection
     conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
