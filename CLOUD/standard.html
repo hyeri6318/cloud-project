@@ -1,40 +1,41 @@
-<!--장영훈-->
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="standardstyle.css">
-    </head>
-    <body>
-        <div class="wrap">
-            <div class="intro">
-                <div class="header">
-                    <!--<div class="searchArea">
-                        <form>
-                            <input type="search" placeholder="Search">
-                            <span>검색</span>
-                        </form>
-                    </div>-->
-                    <div class="intro_text">
-                        <h1>표준레시피</h1>
-                    </div>
-                    <!--<ul class="nav">
-                        <li><a href="#">한식</a></li>
-                        <li><a href="#">중식</a></li>
-                        <li><a href="#">양식</a></li>
-                        <li><a href="#">일식</a></li>
+<head>
+    <meta charset="UTF-8">
+    <title>precipe</title>
+    <link rel="stylesheet" type="text/css" href="standardstyle.css">
+</head>
 
-                    </ul>-->
-                    <table class="table">
-                        <thead>
-                                <th><a href="sthansig.jsp">한식</a></th>
-                                <th><a href="stchina.jsp">중식</a></th>
-                                <th><a href="stwestern.jsp">양식</a></th>
-                                <th><a href="stjapan.jsp">일식</a></th>
-                        </thead>
-                    </table>
+<body>
+    <form method="post" name="form">
+        <div class="head">
+            <h3 style="
+                margin: 0;
+                font-size: 2.5rem;
+                color: white;
+            ">
+                세상에 나쁜 요리는 없다
+            </h3>
+            <div class="menu">
+                <a class="btn">RECIPE</a>
+                <a class="btn" onClick=location.href='precipe.html'>OWN RECIPE</a>
+                <a class="btn" >RANKING</a>
+                <a class="btn" onClick=location.href='profile.html'>PROFILE</a>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="body">
+                <div style="height: 150px;">&nbsp;</div>
+                <h1><p class="easy-login" align="center">CATEGORY</p></h1>
+                <div class="categoty" align="center">
+                    <a class="btn" onclick="location.href='sthansig.jsp'">한식</a>
+                    <a class="btn" onclick="location.href='stchina.jsp'">중식</a>
+                    <a class="btn" onclick="location.href='stwestern.jsp'">양식</a>
+                    <a class="btn" onclick="location.href='stjapan.jsp'">일식</a>
                 </div>
             </div>
         </div>
-    </body>
+    </form>
+</body>
 </html>
