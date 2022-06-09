@@ -8,10 +8,17 @@
 <%@ page import ="java.io.PrintWriter" %>
 <% request.setCharacterEncoding("utf-8"); %>
 
-  <html>
+<%-- 
+    담당자 : 이혜리
+    SFR-200 ~ SFR-203: 프로필 출력 및 개인 정보 변경 구현
+              로그인한 아이디와 일치하는 사용자 정보를 데이터베이스에서 가져와 출력하도록 구현
+              이름, 아이디, 포인트는 변경이 불가능하게 하고 비밀번호만 변경이 가능하도록 구현
+ --%>
 
+  <html>
   <head>
-    <title>세나요</title>
+    <link href="style.css" rel="stylesheet">
+    <title>게시판</title>
   </head>
 
   <%
@@ -22,7 +29,6 @@
   String PW="";
   String NPW1="";
   String NPW2="";
-  String LIVE="";
   String POINT="";
 //  int indx = Integer.parseInt(requset.getParameter("idx"));
 
@@ -49,9 +55,8 @@
       if(rs.next()){
         ID=rs.getString(1);
         POINT=rs.getString(2);
-        LIVE=rs.getString(3);
-        PW=rs.getString(4);
-        NAME=rs.getString(5);
+        PW=rs.getString(3);
+        NAME=rs.getString(4);
       }
 
   } catch(SQLException ex) {
@@ -66,19 +71,55 @@
 }
   %>
 
-  <body>
-    <table>
+  <body style="background: white;">
+    <div class="head" style="
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(226, 226, 202, 0.80);
+        backdrop-filter: blur(6px);
+        padding: 0.8rem;
+        display: flex;
+        justify-content: space-between;
+    ">
+        <h3 style="margin: 0;
+                    font-size: 2.5rem;
+                    color: black;
+                    cursor:pointer;
+        "><a style="float: left;" onCLick = "location.href='main.jsp'">
+            세상에 나쁜 요리는 없다</a>
+        </h3>
+    </div>
+    <table style="
+      width: 80%;
+      text-align: center;
+      margin: auto;
+      margin-top: 30px;
+      font-size: 1.4rem;
+    ">
       <tr>
         <td>
-          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <table >
             <tr>
-              <td>PROFILE</td>
+              <h1 style="
+                    margin-top: 30px;
+                    margin-left: 30px;
+                    color: black;
+                    text-align: center;
+                ">
+                    PROFILE</h1>
             </tr>
         </td>
       </tr>
     </table>
 <form action="profileok.jsp" method="post">
-    <table>
+    <table style="
+        text-align: center;
+        margin: auto;
+        margin-top: 30px;
+        font-size: 1.4rem;
+    ">
       
       <tr>
         <td>&nbsp;</td>
@@ -128,17 +169,7 @@
       </tr>
       <tr height="1" bgcolor="#dddddd">
         <td colspan="4"></td>
-      </tr>
-
-      <tr>
-        <td>&nbsp;</td>
-        <td align="center">사는곳</td>
-        <td><input type=text name="LIVE" size="50" maxlength="50" value="<%=LIVE%>"></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr height="1" bgcolor="#dddddd">
-        <td colspan="4"></td>
-      </tr>
+      </tr> 
 
       <tr>
         <td>&nbsp;</td>
@@ -153,10 +184,51 @@
       <tr align="center">
         <td>&nbsp;</td>
         <td colspan="2">
-          <input type=submit value="회원 정보 수정">
-          <input type=button value="탈퇴"  onClick="location.href='deleteprofile.html'">
-          <input type=button value="개인 레시피 조회"  onClick="location.href='precipe_list.jsp'">  
-          <input type=button value="취소" onClick="location.href='main.html'" >
+          <input type=submit value="회원 정보 수정" style="
+        border: 1px solid #505352;
+        background-color: #505352;
+        margin-right: auto;
+        margin-left: auto;
+        margin: 10px;
+        width: 100px;
+        height: 50px;
+        color: white;
+        cursor: pointer;
+    ">
+          <input type=button value="탈퇴"  onClick="location.href='deleteprofile.html'" style="
+        border: 1px solid #505352;
+        background-color: #505352;
+        margin-right: auto;
+        margin-left: auto;
+        margin: 10px;
+        width: 100px;
+        height: 50px;
+        color: white;
+        cursor: pointer;
+    "> 
+
+         <input type=button value="개인 레시피 조회"  onClick="location.href='precipe_list.jsp'" style="
+        border: 1px solid #505352;
+        background-color: #505352;
+        margin-right: auto;
+        margin-left: auto;
+        margin: 10px;
+        width: 100px;
+        height: 50px;
+        color: white;
+        cursor: pointer;
+    "> 
+          <input type=button value="취소" onClick="location.href='main.jsp'" style="
+        border: 1px solid #505352;
+        background-color: #505352;
+        margin-right: auto;
+        margin-left: auto;
+        margin: 10px;
+        width: 100px;
+        height: 50px;
+        color: white;
+        cursor: pointer;
+    ">
         <td>&nbsp;</td>
       </tr>
     </table>

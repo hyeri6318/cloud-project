@@ -12,9 +12,9 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
-        <title>표준레시피인기순위</title>
+        <title>표준 레시피 인기순위</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="allstandard.css">
+        <link rel="stylesheet" type="text/css" href="standard.css">
     </head>
     <body>
         <% // MySQL JDBC Driver Loading
@@ -22,6 +22,7 @@
                 Connection conn =null;
                 Statement stmt =null;
                 ResultSet rs =null;
+
 
                 try {
                     String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
@@ -41,18 +42,21 @@
             
 
 
-        <div class="table">
-            <thead>
-                <tr>
-                    <th><a href="#">CLOUD</a></th>
-                    <th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
-                    <th><a href="#">RECIPE</a></th>
-                    <th><a href="#">OWN RECIPE</a></th>
-                    <th><a href="#">RANKING</a></th>
-                    <th><a href="#">PROFILE</a></th>
-                </tr>
-            </thead>
-        </div>
+<div class="head">
+                <h3 style="
+                    margin: 0;
+                    font-size: 2.5rem;
+                    color: black;
+                    cursor: pointer;
+                "><a style="float: left;" onCLick = "location.href='index.html'">세상에 나쁜 요리는 없다 </a>
+                </h3>
+                <div class="menu">
+                    <a class="btn" onCLick = "location.href='standard.html'">RECIPE</a>
+                    <a class="btn" onClick ="location.href='precipe.html'">OWN RECIPE</a>
+                    <a class="btn" onclick="location.href='standardranking.jsp'">RANKING</a>
+                    <a class="btn" onClick="location.href='login.html'">LOGIN</a>
+                </div>
+            </div>
 
         <div class="intro_text">
             <h1>POPULARITY RANKING</h1>

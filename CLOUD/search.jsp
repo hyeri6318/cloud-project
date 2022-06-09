@@ -17,7 +17,7 @@
         
         <link rel="stylesheet" type="text/css" href="allstandard.css">
     </head>
-    <body>
+    
         <% // MySQL JDBC Driver Loading
                 //1. getParameter로 index.html에서 검색한 값을 search로 가져오기
                 String search = request.getParameter("search");
@@ -84,19 +84,62 @@
 
             
 
-
-        <div class="table">
-            <thead>
-                <tr>
-                    <th><a href="#">CLOUD</a></th>
-                    <th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
-                    <th><a href="#">RECIPE</a></th>
-                    <th><a href="#">OWN RECIPE</a></th>
-                    <th><a href="#">RANKING</a></th>
-                    <th><a href="#">PROFILE</a></th>
-                </tr>
-            </thead>
+            <body style="background:white;">
+    <div class="head" style="
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(226, 226, 202, 0.80);
+        backdrop-filter: blur(6px);
+        padding: 0.8rem;
+        display: flex;
+        justify-content: space-between;
+    ">
+        <h3 style="margin: 0;
+            font-size: 2.5rem;
+            color: black;
+            cursor:pointer;
+        "><a style="float: left;" onCLick = "location.href='main.jsp'">세상에 나쁜 요리는 없다 </a>
+        </h3>
+        <div class="menu" style="
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 1.5rem;
+        ">
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+                onClick=location.href='standard.html'>RECIPE</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+                onClick=location.href='precipe.html'>OWN RECIPE</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+                onClick=location.href='standardranking.jsp'>RANKING</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+            onClick=location.href='profile.jsp'>PROFILE</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+            onClick=location.href='logout.jsp'>LOGOUT</a>
         </div>
+    </div>
 
         <div class="intro_text">
             <h1>SEARCH FOOD</h1>
@@ -112,7 +155,7 @@
 		            while (rs.next()) {
                     %>
 				<td>
-					<a href=<%="http://49.50.164.44/redirectHandler.jsp?num=" + rs.getString("num")%>>
+					<a href=<%="http://49.50.161.25:8080//redirectHandler.jsp?num=" + rs.getString("num")%>>
                     <img src='<%=rs.getString("picture")%>' width='300' height='300'><br>
                     <%=rs.getString("recipetitle")%><br>
                     조회수<%=rs.getInt("views")%><br>
@@ -145,12 +188,12 @@
             }
           
             %>
+
             </table>
         </div>
     </body>
 </html>
-  
-            %>
+            
 <%
 
 

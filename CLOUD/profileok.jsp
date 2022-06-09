@@ -8,6 +8,11 @@
 <%@ page import ="java.io.PrintWriter" %>
 <% request.setCharacterEncoding("utf-8"); %>
 
+<%-- 
+    담당자 : 이혜리
+    SFR-200 ~ SFR-203 : 정보 변경 버튼을 누르면 실행되는 jsp
+ --%>
+
 <%
 String pw=(String)session.getAttribute("ps");
 
@@ -15,7 +20,6 @@ String ID=request.getParameter("ID");
 String PW = request.getParameter("PW");
 String NPW1=request.getParameter("NPW1");
 String NPW2=request.getParameter("NPW2");
-String LIVE=request.getParameter("LIVE");
 
 Class.forName("com.mysql.cj.jdbc.Driver"); 
   Connection conn =null;
@@ -41,13 +45,13 @@ Class.forName("com.mysql.cj.jdbc.Driver");
           ID=rs.getString(1);
       }
 
-      if(PW.equals(pw)){
-        if(NPW1.equals(NPW2)){
-          String sql1="UPDATE CLIENT SET PS = '"+NPW1+"' ,LIVE = '"+LIVE+"' WHERE ID = '"+ID+"'";
+      if(PW.equals(pw)){  // 세션에 담은 비밀번호와 사용자가 입력한 기존 비밀번호가 일치하는지 확인
+        if(NPW1.equals(NPW2)){  // 변경할 비밀번호와 체크 비밀번호가 일치하는지 확인
+          String sql1="UPDATE CLIENT SET PS = '"+NPW1+"' WHERE ID = '"+ID+"'";  // 일치하는 경우 CLIENT 데이터베이스에 변경된 비밀번호를 업데이트
           stmt.executeUpdate(sql1);
 
           out.println("<script>alert('정보 변경 완료');</script>");
-          response.sendRedirect("login.html");
+          response.sendRedirect("login.html");  // 정보 변경이 성공하면 로그인 페이지로 이동
         } else{
           out.println("<script>alert('정보 변경 실패');</script>");
           out.println("<script>history.go(-1);</script>");

@@ -8,6 +8,13 @@
 <%@ page import ="java.io.PrintWriter" %>
 <% request.setCharacterEncoding("utf-8"); %>
 
+<%-- 
+    담당자 : 이혜리
+    SFR-101 : 로그인  페이지
+              아이디, 비밀번호를  입력 받아 로그인할 수 있도록 구현
+              이때, DB에 저장된 아이디와 비밀번호가 일치하는 경우 로그인 되도록 구현
+ --%>
+
 <html>
     <head>
         <title>세나요</title>
@@ -15,7 +22,7 @@
     
     <body>
         <%
-        String ID=request.getParameter("id");
+        String ID=request.getParameter("id"); 
         String PS=request.getParameter("ps");
         
         // 업로드할 클래스 이름 지정
@@ -50,15 +57,16 @@
 
             int lh=0; // 로그인이 되었는지 확인하는 변수
             
+            // 데이터 베이스에 저장되어 있는 아이디와, 비밀번호가 사용자가 입력한 아이디, 비밀번호와 일치하는지 확인
             for(int i=0; i<id_list.size();i++){
-                if(ID.equals(id_list.get(i)) && PS.equals(ps_list.get(i))){
+                if(ID.equals(id_list.get(i)) && PS.equals(ps_list.get(i))){ 
 
-                    session.setAttribute("id",ID);
-                    session.setAttribute("ps",PS);
+                    session.setAttribute("id",ID);  // 일치하는 경우 ID를 세션값에 담음
+                    session.setAttribute("ps",PS);  // 일치하는 경우 PS를 세션값에 담음
 
                     lh=-1; // 로그인 성공했을 때 변수
 
-                    response.sendRedirect("main.html");
+                    response.sendRedirect("main.jsp");  // 로그인 성공시 메인 페이지로 이동
                 }
             }
 

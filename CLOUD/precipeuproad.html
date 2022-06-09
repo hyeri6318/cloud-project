@@ -1,96 +1,99 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>precipeuproad</title>
-    <link rel="stylesheet" type="text/css" href="precipeuproad.css">
-</head>
-
-<body>
-    <div class="head">
-        <h3 style="
-            margin: 0;
-            font-size: 2.5rem;
-            color: black;
-            cursor:pointer;
-        "><a style="float: left;" onCLick = "location.href='main.html'">세상에 나쁜 요리는 없다 </a>
-        </h3>
-        <div class="menu">
-            <a class="btn" onCLick = "location.href='standard.html'">RECIPE</a>
-            <a class="btn" onClick ="location.href='precipe.html'">OWN RECIPE</a>
-            <a class="btn" onclick="location.href='standardranking.jsp'">RANKING</a>
-            <a class="btn" onClick="location.href='profile.jsp'">PROFILE</a>
-            <a class="btn" onClick="location.href='logout.jsp'">LOGOUT</a>
-        </div>
-    </div>
-
-
-    <div class="board_wrap">
-        <div class="body">
-            <form method="post" name="form">
-            <div class="board_title">
-                <strong>개인레시피 업로드</strong>
-                <p>나만의 레시피를 업로드 해주세요!!</p>
-            </div>
-            <div class="board_write_wrap">
-                <div class="board_write">
-                    <div class="title">
-                        <dl>
-                           <dt>제목</dt>
-                             <dd><input type="text" name="title" placeholder="제목 입력"></dd>
-                        </dl>
-                    </div>
-
-                    <div class="title">
-                        <dl>
-                           <dt>소요시간 (분)</dt>
-                             <dd><input type="text" name="time" placeholder="숫자만 입력해주세요"></dd>
-                        </dl>
-                    </div>
-
-                    <div class="title">
-                        <dl>
-                           <dt>카테고리</dt>
-                             <dd>
-                                 <input type="radio" name="cate" value="korea"> 한식
-                                 <input type="radio" name="cate" value="chinese"> 중식
-                                 <input type="radio" name="cate" value="western"> 양식
-                                 <input type="radio" name="cate" value="japanese"> 일식
-                            </dd>
-                        </dl>
-                    </div>
-
-                    <div class="title">
-                        <dl>
-                           <dt>날씨</dt>
-                             <dd>
-                                 <input type="radio" name="weather" value="sunny"> 맑음
-                                 <input type="radio" name="weather" value="cloud"> 흐림
-                                 <input type="radio" name="weather" value="rain"> 비
-                                 <input type="radio" name="weather" value="snow"> 눈
-                                 <input type="radio" name="weather" value = "fog"> 안개
-                            </dd>
-                        </dl>
-                    </div>
-
-                    <div class="title">
-                        <dl>
-                           <dt>재료</dt>
-                             <dd><input type="text" name="ingre" placeholder="재료 입력"></dd>
-                        </dl>
-                    </div>
-
-                    <div class="cont">
-                        <textarea name="recipe" placeholder="내용 입력"></textarea>
-                    </div>
-                </div>
-                <div class="bt_wrap">
-                    <input type="submit" value="저장" class="on" onClick="form.action='precipeuproad.jsp'">
-                    <input type=button value="취소" onClick="location.href='precipe.html'" >
-                    <input type=button value="수정" class="on" onClick="form.action='changeprecipe.jsp'" >
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
-</body>
+<!--
+    담당자 : 이혜리
+    SFR-300 ~ SFR-302 : 사용자가 공유하고 싶은 개인 레시피를 작성할 수 있도록 한다.
+ -->
+ <!DOCTYPE html>
+ <html lang="ko">
+ <head>
+     <meta charset="UTF-8">
+     <title>precipeuproad</title>
+     <link rel="stylesheet" type="text/css" href="preuproad.css">
+ </head>
+ 
+ <body>
+     <div class="head">
+         <h3 style="
+             margin: 0;  
+             font-size: 2.5rem;
+             color: black;
+             cursor:pointer;
+         "><a style="float: left;" onCLick = "location.href='main.jsp'">세상에 나쁜 요리는 없다 </a>
+         </h3>
+         <div class="menu">
+             <a class="btn" onCLick = "location.href='standard.html'">RECIPE</a>
+             <a class="btn" onClick ="location.href='precipe.html'">OWN RECIPE</a>
+             <a class="btn" onclick="location.href='standardranking.jsp'">RANKING</a>
+             <a class="btn" onClick="location.href='profile.jsp'">PROFILE</a>
+             <a class="btn" onClick="location.href='logout.jsp'">LOGOUT</a>
+         </div>
+     </div>
+ 
+ 
+     <div class="board_wrap">
+         <div class="body">
+             <form method="post" name="form">
+             <div class="board_title">
+                 <strong>개인레시피 업로드</strong>
+                 <p>나만의 레시피를 업로드 해주세요!!</p>
+             </div>
+             <div class="board_write_wrap">
+                 <div class="board_write">
+                     <div class="title">
+                         <dl>
+                            <dt>제목</dt>
+                              <dd><input type="text" name="title" placeholder="제목 입력"></dd>
+                         </dl>
+                     </div>
+ 
+                     <div class="title">
+                         <dl>
+                            <dt>소요시간 (분)</dt>
+                              <dd><input type="text" name="time" placeholder="숫자만 입력해주세요"></dd>
+                         </dl>
+                     </div>
+ 
+                     <div class="title">
+                         <dl>
+                            <dt>카테고리</dt>
+                              <dd>
+                                  <input type="radio" name="cate" value="korea"> 한식
+                                  <input type="radio" name="cate" value="chinese"> 중식
+                                  <input type="radio" name="cate" value="western"> 양식
+                                  <input type="radio" name="cate" value="japanese"> 일식
+                             </dd>
+                         </dl>
+                     </div>
+ 
+                     <div class="title">
+                         <dl>
+                            <dt>날씨</dt>
+                              <dd>
+                                  <input type="radio" name="weather" value="sunny"> 맑음
+                                  <input type="radio" name="weather" value="cloud"> 흐림
+                                  <input type="radio" name="weather" value="rain"> 비
+                                  <input type="radio" name="weather" value="snow"> 눈
+                                  <input type="radio" name="weather" value = "fog"> 안개
+                             </dd>
+                         </dl>
+                     </div>
+ 
+                     <div class="title">
+                         <dl>
+                            <dt>재료</dt>
+                              <dd><input type="text" name="ingre" placeholder="재료 입력"></dd>
+                         </dl>
+                     </div>
+ 
+                     <div class="cont">
+                         <textarea name="recipe" placeholder="내용 입력"></textarea>
+                     </div>
+                 </div>
+                 <div class="bt_wrap">
+                     <input type="submit" value="저장" class="on" onClick="form.action='precipeuproad.jsp'">
+                     <input type=button value="취소" onClick="location.href='precipe.html'" >
+                 </div>
+             </div>
+             </form>
+         </div>
+     </div>
+ </body>

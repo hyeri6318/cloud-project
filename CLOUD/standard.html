@@ -1,28 +1,69 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>precipe</title>
-    <link rel="stylesheet" type="text/css" href="precipe.css">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>세나요</title>
+        <link rel="stylesheet" type="text/css" href="precipe.css">
+    </head>
 
-<body>
-    <form method="post" name="form">
-        <div class="head">
-            <h3 style="
-                margin: 0;
-                font-size: 2.5rem;
-                color: white;
-            ">
-                세상에 나쁜 요리는 없다
-            </h3>
-            <div class="menu">
-                <a class="btn">RECIPE</a>
-                <a class="btn" onClick=location.href='precipe.html'>OWN RECIPE</a>
-                <a class="btn" >RANKING</a>
-                <a class="btn" onClick=location.href='profile.html'>PROFILE</a>
-            </div>
+    <body>
+ <body style="background:white;">
+    <div class="head" style="
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(226, 226, 202, 0.80);
+        backdrop-filter: blur(6px);
+        padding: 0.8rem;
+        display: flex;
+        justify-content: space-between;
+    ">
+        <h3 style="margin: 0;
+            font-size: 2.5rem;
+            color: black;
+            cursor:pointer;
+        "><a style="float: left;" onCLick = "location.href='index.html'">세상에 나쁜 요리는 없다 </a>
+        </h3>
+        <div class="menu" style="
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 1.5rem;
+        ">
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+                onClick=location.href='standard.html'>RECIPE</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+                onClick=location.href='precipe.html'>OWN RECIPE</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+                onClick=location.href='standardranking.jsp'>RANKING</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+            onClick=location.href='profile.jsp'>PROFILE</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+            onClick=location.href='logout.jsp'>LOGOUT</a>
         </div>
+    </div>
+            <div style="height: 100px;">&nbsp;</div>
 
         <div class="wrap">
             <div class="body">

@@ -52,9 +52,9 @@
 
 
 <html>
-    <head>
+    <head> 
     <link href="style.css" rel="stylesheet">
-    <title>한식</title>
+    <title>개입 레시피</title>
     </head>
     <body style="background:white;">
     <div class="head" style="
@@ -185,11 +185,9 @@
                 query="UPDATE PRECIPE SET VIEW=" + view + " WHERE RNUM=" + rnum + ";";
                 stmt.executeUpdate(query);
 
-          
-                String sql1="UPDATE CLIENT SET POINT=POINT-2 WHERE ID = '"+ID+"'";
+                 String sql1="UPDATE CLIENT SET POINT=POINT-2 WHERE ID = '"+ID+"'";
                 int count1=stmt.executeUpdate(sql1);
-           
-            }
+                }   
     } catch(SQLException ex) {
         out.println(ex.getMessage());
         ex.printStackTrace();
@@ -198,7 +196,7 @@
 
      <tr align="center">
       <td colspan="2" width="399">
-	<input type=button value="목록" onClick=location.href='precipeko.jsp' style="
+	<input type=button value="목록" onClick=location.href='precipech.jsp' style="
         border: 1px solid #505352;
         background-color: #505352;
         margin-right: auto;
@@ -249,7 +247,7 @@
             ">
 
             <div style="height: 50px;">&nbsp;</div>
-                <form action="/precipeko3.jsp" method="post">
+                <form action="/precipech3.jsp" method="post">
                 <input type="hidden" name="rnum" value=<%=rnum%> />
                 <textarea name="comments" style="
                     width: calc(100% - 1px);

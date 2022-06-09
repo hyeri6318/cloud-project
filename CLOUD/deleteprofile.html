@@ -1,39 +1,51 @@
-<!DOCTYPE html>
-<html lang="ko">
-    <head>
-        <meta charset="utf-8">
-        <title>CHANGE PASSWORD</title>
-        <link rel="stylesheet" href="deleteprofile.css">
-    </head>
-
-    <body>
-        <div class="head">
-            <h3 style="
-                margin: 0;
-                font-size: 2.5rem;
-                color: black;
-                cursor:pointer;
-            "><a style="float: left;" onCLick = "location.href='main.html'">세상에 나쁜 요리는 없다 </a>
-            </h3>
-        </div>
-        <div style="height: 150px;">&nbsp;</div>
-            <form action="deleteprofile.jsp" method="post">
-            <p class="easy-login" align="center">PROFILE</p>
-        <div class="body">
-            <form method="post" name="form">
-
-                <div class="form-group">
-                    <p calss="ref" align="left">비밀번호
-                        <input type="password" class="form-group" name="ps" required>
-                    </p>
-                </div>
-
-                <div class="change-button">
-                    <div class="btn btn-primary">
-                        <input type="submit" value="탈퇴" class="btn btn-primary">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </body>
-</html>
+<!--
+    담당자 : 이혜리
+    비밀번호를 입력받고 회원 탈퇴가 가능하도록 한다.
+ -->
+ <!DOCTYPE html>
+ <html lang="ko">
+     <head>
+         <meta charset="utf-8">
+         <title>CHANGE PASSWORD</title>
+         <link rel="stylesheet" href="deleteprofile.css">
+     </head>
+ 
+     <body>
+         <div class="head">
+             <h3 style="
+                 margin: 0;
+                 font-size: 2.5rem;
+                 color: black;
+                 cursor:pointer;
+             "><a style="float: left;" onCLick = "location.href='main.jsp'">세상에 나쁜 요리는 없다 </a>
+             </h3>
+         </div>
+         <div style="height: 150px;">&nbsp;</div>
+             <form action="deleteprofile.jsp" method="post">
+                 <tr>
+                     <h1 style="
+                           margin-top: 30px;
+                           margin-left: 30px;
+                           color: black;
+                           text-align: center;
+                       ">
+                           PROFILE</h1>
+                   </tr>
+         <div class="body">
+             <form method="post" name="form">
+ 
+                 <div class="form-group">
+                     <p calss="ref" align="left">비밀번호
+                         <input type="password" class="form-group" name="ps" required>
+                     </p>
+                 </div>
+ 
+                 <div class="change-button">
+                     <div class="btn btn-primary">
+                         <input type="submit" value="탈퇴" class="btn btn-primary">
+                     </div>
+                 </div>
+             </form>
+         </div>
+     </body>
+ </html>

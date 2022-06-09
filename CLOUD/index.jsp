@@ -13,6 +13,6 @@ String id = (String)session.getAttribute("id");
 if(id==null){%>
 <script>alert('로그인 후 접속 가능합니다.');</script>
 <script>history.go(-1);</script>
-<%} else { %>
-response.sendRedirect("precipe.html");
-<%}%>
+<%} else { 
+    response.sendRedirect("precipe.html");
+}%>

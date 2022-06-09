@@ -8,6 +8,12 @@
 <%@ page import ="java.lang.String" %>
 <% request.setCharacterEncoding("utf-8"); %>
 
+<%-- 
+    담당자 : 이혜리
+    SFR-300 ~ SFR-302 : 제목, 시간, 카테고리, 날씨, 재료, 레시피를 작성할 수 있도록 구현한다.
+                        저장 버튼을 누르면 작성한 사용자에게 3포인트를 지급하도록 구현한다.
+ --%>
+
 <html>
     <head>
         <title>세나요</title>
@@ -52,13 +58,13 @@
             }
 
             for(int i=0; i<id_list.size();i++){
-                if(id.equals(id_list.get(i))){
-                    String sql1="UPDATE CLIENT SET POINT=POINT+3 WHERE ID = '"+id+"'";
+                if(id.equals(id_list.get(i))){  // 세션값에 담긴 아이디와 CLIENT 데이터베이스에 저장된 아이디 값이 일치하는지 확인
+                    String sql1="UPDATE CLIENT SET POINT=POINT+3 WHERE ID = '"+id+"'";  // 해당 아이디를 가진 사용자가에 3포인트를 추가로 지급
                     int count1=stmt.executeUpdate(sql1);
                 }
             }
 
-            String sql2="insert into PRECIPE(WEATHER,CATE,TITLE,ID,TIME,RECIPE,INGRE) values";
+            String sql2="insert into PRECIPE(WEATHER,CATE,TITLE,ID,TIME,RECIPE,INGRE) values";  // 사용자가 입력한 개인레시피를 PRECIPE 데이터베이스에 저장
             sql2+="('"+WEATHER+"','"+CATE+"','"+TITLE+"','"+id+"','"+TIME+"','"+RECIPE+"','"+INGRE+"')";
             int count2 = stmt.executeUpdate(sql2);
 

@@ -1,42 +1,52 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>precipe</title>
-    <link rel="stylesheet" type="text/css" href="precipe.css">
-</head>
-
-<body>
-    <form method="post" name="form">
-        <div class="head">
-            <h3 style="
-                margin: 0;
-                font-size: 2.5rem;
-                color: black;
-                cursor:pointer;
-            "><a style="float: left;" onCLick = "location.href='main.html'">세상에 나쁜 요리는 없다 </a>
-            </h3>
-            <div class="menu">
-                <a class="btn" onCLick = "location.href='standard.html'">RECIPE</a>
-                <a class="btn" onClick ="location.href='precipe.html'">OWN RECIPE</a>
-                <a class="btn" onclick="location.href='standardranking.jsp'">RANKING</a>
-                <a class="btn" onClick="location.href='profile.jsp'">PROFILE</a>
-                <a class="btn" onClick="location.href='logout.jsp'">LOGOUT</a>
-            </div>
-        </div>
-
-        <div class="wrap">
-            <div class="body">
-                <div style="height: 150px;">&nbsp;</div>
-                <h1><p class="easy-login" align="center">개인 레시피 카테고리</p></h1>
-                <div class="categoty" align="center">
-                    <input type="submit" value="한식" class="btn btn-primary" onClick="form.action='precipeko.jsp'">
-                    <input type="submit" value="중식" class="btn btn-primary" onClick="form.action='precipewe.jsp'">
-                    <input type="submit" value="양식" class="btn btn-primary" onClick="form.action='precipech.jsp'">
-                    <input type="submit" value="일식" class="btn btn-primary" onClick="form.action='precipeja.jsp'">
-                </div>
-            </div>
-        </div>
-    </form>
-</body>
-</html>
+<!--
+    담당자 : 이혜리
+    SFR-100 : 로그인 페이지 로서 사용자 아이디, 비밀번호를 입력받는다.
+ -->
+ <!DOCTYPE html>
+ <html lang="ko">
+     <meta charset="utf-8">
+     <title>세나요</title>
+     <link rel="stylesheet" type="text/css" href="clogin.css">
+ </html>
+ 
+ <body>
+     <div class="wrap">
+       <div class="head">
+         <h3 style="
+             margin: 0;
+             font-size: 2.5rem;
+             color: black;
+             cursor: pointer;
+         "<a style="float: left;" onCLick = "location.href='index.html'">세상에 나쁜 요리는 없다 </a>
+         </h3>
+      </div>
+ 
+         <div class="body">
+             <form method="post" name="form">
+                 <h1><p class="easy-login" align="center">LOGIN</p></h1>
+ 
+                 <form>
+                     <div class="form-group">
+                         <p class="ref" align="left">ID
+                         <input type="text" class="form-group" name="id" placeholder="아이디" required>
+                         </p>
+                     </div>
+ 
+                     <div class="form-group">
+                         <p class="ref" align="left">PASSWORD
+                         <input type="password" class="form-group" name="ps" placeholder="비밀번호" required>
+                         </p>
+                     </div>
+ 
+                     <td align=coneter height=60>
+                        <div class="bt_wrap">
+                            <input type="submit" value="LOGIN" class="btn btn-primary" onClick="form.action='login.jsp'">
+                            <input type="submit" value="SIGN UP" class="btn btn-primary" onClick="location.href='signup.html'">
+                        </div>
+ 
+                     </td>
+ 
+                 </form>
+         </div>
+     </div>
+ </body> 

@@ -3,10 +3,8 @@
     list-style: none;
     text-decoration: none;
     border-collapse: collapse;
-    margin: 0px;
     padding: 0px;
     color: black;
-    background-color: rgb(77, 76, 76);
 }
 
 .table{
@@ -16,21 +14,21 @@
     margin-left:100px;
 }
 
-a{
+/* a{
     color:#fff;
     font-size:x-large;
     font-weight: normal;
-}
+} */
 
 .intro_text{
     margin-left:100px;
     color:#fff;
 }
 
-h1{
+/* h1{
     color:#fff;
     font-weight: normal;
-}
+} */
 
 .recipe{
     padding-top:10px;
@@ -42,8 +40,36 @@ h1{
     margin-left:auto;
     margin-right:auto;
     border: 0px solid white;
+    text-align: center;
 }
 
 .recipe > th, td{
-    border: 50px solid #4D4C4C;
+    border: 3px solid white;
+}
+
+.head{
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(226, 226, 202, 0.80);
+    backdrop-filter: blur(6px);
+    padding: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn{
+    text-decoration: none;
+    margin-left:50px;
+    color:black;
+    cursor:pointer;
+}
+
+.menu{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 1.5rem;
+    cursor: pointer;
 }

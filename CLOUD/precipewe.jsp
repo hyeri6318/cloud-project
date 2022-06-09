@@ -17,8 +17,7 @@
     <link href="style.css" rel="stylesheet">
     <title>양식</title>
     </head>
-    <body style="background: white;">
-    <%-- 상단 바 메뉴 --%>
+    <body style="background:white;">
     <div class="head" style="
         position: sticky;
         top: 0;
@@ -31,11 +30,10 @@
         justify-content: space-between;
     ">
         <h3 style="margin: 0;
-                    font-size: 2.5rem;
-                    color: black;
-                    cursor:pointer;
-        "><a style="float: left;" onCLick = "location.href='main.html'">
-            세상에 나쁜 요리는 없다</a>
+            font-size: 2.5rem;
+            color: black;
+            cursor:pointer;
+        "><a style="float: left;" onCLick = "location.href='main.jsp'">세상에 나쁜 요리는 없다 </a>
         </h3>
         <div class="menu" style="
             padding: 0;
@@ -48,25 +46,25 @@
                 margin-left:50px;
                 color:black;
                 cursor:pointer;"
-            onCLick = "location.href='standard.html'">RECIPE</a>
+                onClick=location.href='standard.html'>RECIPE</a>
             <a class="btn" style="
                 text-decoration: none;
                 margin-left:50px;
                 color:black;
                 cursor:pointer;"
-            onCLick = "location.href='precipe.html'">OWN RECIPE</a>
+                onClick=location.href='precipe.html'>OWN RECIPE</a>
             <a class="btn" style="
                 text-decoration: none;
                 margin-left:50px;
                 color:black;
                 cursor:pointer;"
-            onclick="location.href='standardranking.jsp'">RANKING</a>
+                onClick=location.href='standardranking.jsp'>RANKING</a>
             <a class="btn" style="
                 text-decoration: none;
                 margin-left:50px;
                 color:black;
                 cursor:pointer;"
-            onClick=location.href='profile.html'>PROFILE</a>
+            onClick=location.href='profile.jsp'>PROFILE</a>
             <a class="btn" style="
                 text-decoration: none;
                 margin-left:50px;
@@ -85,9 +83,9 @@
         int total = 0; 
         try{
             // Driver로부터 데이터베이스와의 Connection을 얻기 위함
-            String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
-            String dbUser ="tester"; //mysql id
-            String dbPass ="1234"; //mysql password
+            String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
+            String dbUser ="cloud"; //mysql id
+            String dbPass ="5678"; //mysql password
             String query ="select RNUM, TITLE, ID, TIME, VIEW from PRECIPE where CATE='western' order by VIEW DESC"; //query
         
             conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);

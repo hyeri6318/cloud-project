@@ -17,6 +17,12 @@
 <%@ page import ="java.lang.String" %>
 <% request.setCharacterEncoding("utf-8"); %>
 
+<!--
+    담당자 : 이혜리
+    SFR-400 ~ SFR-403 : 메인페이지로서 표준 레시피 조회, 개인 레시피 조회, 인기순위 조회, 프로필 조회, 로그아웃을 할 수 있도록 구현한다.
+                        개인 레시피에 저장되어 있는 날씨 정보를 바탕으로 날씨별 요리를 추천하도록 구현한다.
+ -->
+
 <%
 String weatherForecast = null;
 try {
@@ -61,41 +67,78 @@ try {
 }
 %>
 
-<h1 style="
-    outline
-">현재 날씨 : <%= weatherForecast %></h1>
-<div style="height: 20px;">&nbsp;</div>
-<%
-Class.forName("com.mysql.cj.jdbc.Driver"); 
-        Connection conn =null;
-        Statement stmt =null;
-        ResultSet rs =null;
-        int total = 0; 
-        try{
-            // Driver로부터 데이터베이스와의 Connection을 얻기 위함
-            String jdbcDriver ="jdbc:mysql://localhost:3306/TestDB?serverTimezone=UTC"; 
-            String dbUser ="tester"; //mysql id
-            String dbPass ="1234"; //mysql password
-            String query ="select RNUM, TITLE, ID, TIME, VIEW from PRECIPE where WEATHER='"+weatherForecast+"' order by VIEW DESC"; //query
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>세나요</title>
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+
+    <body>
+        <form method="get" action="search.jsp">
+            <div class="head">
+                <h3 style="
+                    margin: 0;
+                    font-size: 2.5rem;
+                    color: black;
+                    cursor:pointer;
+                "><a style="float: left;" onCLick = "location.href='main.jsp'">세상에 나쁜 요리는 없다 </a>
+                </h3>
+                <div class="menu">
+                    <a class="btn" onCLick = "location.href='standard.html'">RECIPE</a>
+                    <a class="btn" onClick ="location.href='precipe.html'">OWN RECIPE</a>
+                    <a class="btn" onclick="location.href='standardranking.jsp'">RANKING</a>
+                    <a class="btn" onClick="location.href='profile.jsp'">PROFILE</a>
+                    <a class="btn" onClick="location.href='logout.jsp'">LOGOUT</a>
+                </div>
+            </div>
+            <div style="height: 100px;">&nbsp;</div>
+
+
+            <div class="wrap">
+                <div class="body">
+                    <div class="searchArea">
+                        <input type="search" name="search" placeholder="검색하고 싶은 재료를 입력하세요">
+                        <button type="submit" class="btn_search">검색</button>
+                    </div>
+                        <div style="height: 20px;">&nbsp;</div>
+                        <h1 style="
+                        color: black;
+                        text-align: center;
+                        ">현재 날씨 : <%= weatherForecast %></h1>
+                        
+                        <%
+                        Class.forName("com.mysql.cj.jdbc.Driver"); 
+                        Connection conn =null;
+                        Statement stmt =null;
+                        ResultSet rs =null;
+                        int total = 0; 
+                        try{
+                             // Driver로부터 데이터베이스와의 Connection을 얻기 위함
+                            String jdbcDriver ="jdbc:mysql://localhost:3306/ProjectDB?serverTimezone=UTC"; 
+                            String dbUser ="cloud"; //mysql id
+                            String dbPass ="5678"; //mysql password
+                            String query ="select RNUM, TITLE, ID, TIME, VIEW from PRECIPE where WEATHER='"+weatherForecast+"' order by VIEW DESC"; //query
         
-            conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+                            conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
-            // Connection 객체가 생성되면 SQL 문을 데이터베이스로 전송하기 위함
-            stmt=conn.createStatement();
+                            // Connection 객체가 생성되면 SQL 문을 데이터베이스로 전송하기 위함
+                            stmt=conn.createStatement();
 
-            //if(rs.next()){
-            //    total = rs.getInt(1);
-            //}
-
-            // user 테이블로부터 사용자 아이디와 패스워드 정보 추출
-            rs = stmt.executeQuery(query);
-%>
-<table style="
-                width: 80%;
+                            // user 테이블로부터 사용자 아이디와 패스워드 정보 추출
+                            rs = stmt.executeQuery(query);
+                        %>
+                <table style="
+                width: 120%;
                 text-align: center;
                 margin: auto;
                 margin-top: 30px;
-                font-size: 1rem;
+                font-size: 1.5rem;
+                color: black;
             ">
             <tr height="1" bgcolor="#D2D2D2"><td colspan="6"></td></tr>
             <tr height="1"><td width="5"></td></tr>
@@ -118,7 +161,7 @@ Class.forName("com.mysql.cj.jdbc.Driver");
                     <tr height="25" align="center" >
                        
                        <td><%=rnum %></td>
-                       <td align="center"><a href="t2.jsp?rnum=<%=rnum %>" style="
+                       <td align="center"><a href="weather_precipe.jsp?rnum=<%=rnum %>" style="
                         text-decoration: none;
                         color: black;
                         "><%=title %></td>
@@ -140,3 +183,9 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 
             // TODO
     %>
+
+                </div>
+        </div>
+    </form>
+    </body>
+</html>

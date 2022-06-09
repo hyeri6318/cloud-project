@@ -7,6 +7,11 @@
 <%@ page import ="java.util.ArrayList" %>
 <% request.setCharacterEncoding("utf-8"); %>
 
+<%-- 
+    담당자 : 이혜리
+    회원 탈퇴 기능 : 사용자가 입력한 비밀번호와 세션에 담긴 비밀번호가 일치할 경우 회원 탈퇴가 가능하도록 구현
+ --%>
+
 <html>
     <head>
         <title>CHANGE PASSWORD</title>
@@ -52,15 +57,14 @@
             int dh=0; // 회원 삭제 되었는지 확인하는 변수
 
             for(int i=0; i<id_list.size();i++){
-                if(id.equals(id_list.get(i)) && PS.equals(ps)){
-                    String sql="DELETE FROM CLIENT WHERE ID = '"+id+"'";
+                if(id.equals(id_list.get(i)) && PS.equals(ps)){ // 세션에 담긴 비밀번호와 사용자가 입력한 비밀번호가 일치하는지 확인
+                    String sql="DELETE FROM CLIENT WHERE ID = '"+id+"'";    // 일치하는 경우 CLIENT 데이터베이스에서 해당 회원 정보를 삭제
                     int count=stmt.executeUpdate(sql);
 
                     dh=-1;
 
-                    response.sendRedirect("index.html");
-
-                    
+                    	session.invalidate();
+                        response.sendRedirect("index.html");    // 회원 탈퇴 후 메인 페이지로 이동
                 }
             }
 

@@ -1,4 +1,8 @@
-[changeprecipe_ok.jsp]
+<%-- 
+    담당자 : 이혜리
+    SFR-WM506 : 레시피를 확인할 수 있도록 한다.
+    SFR-WM507 : 댓글을 작성할 수 있게 한다.
+ --%>
 <%@ page contentType ="text/html; charset=utf-8" %>
 <%@ page import ="java.sql.DriverManager" %>
 <%@ page import ="java.sql.Connection" %>
@@ -10,6 +14,11 @@
 <%@ page import = "java.util.*" %>
 <% request.setCharacterEncoding("utf-8"); %>
 
+<%-- 
+    담당자 : 이혜리
+    SFR-303 : 정보변경 버튼을 누르면 실행이되도록 구현한다.
+ --%>
+
 <html>
     <head>
         <title>세나요</title>
@@ -19,24 +28,13 @@
 
 <%      
         int rnum = Integer.parseInt(request.getParameter("rnum"));
-        //String rnum = request.getParameter("rnum");
         String id=(String)session.getAttribute("id");
         String title = request.getParameter("title");
         String time = request.getParameter("time");
-        //int view = request.getInt("view");
         String ingre = request.getParameter("ingre");
         String recipe= request.getParameter("recipe");
-
-        String korea = request.getParameter("korea");
-        String chinese = request.getParameter("chinese");
-        String japanese = request.getParameter("japanese");
-        String wetsern = request.getParameter("western");
-
-        //String weather = request.getParameter("sunny");
-        //String weather = request.getParameter("cloud");
-        //String weather = request.getParameter("fog");
-        //String weather = request.getParameter("rain");
-       // String weather = request.getParameter("snow");
+        
+       String cate = request.getParameter("cate");
 
        String weather = request.getParameter("weather");
 
@@ -69,10 +67,11 @@
                 id_list.add(rs.getString("ID"));
             }
 
-            String sql1="UPDATE PRECIPE SET WEATHER = '"+weather+"', TITLE = '"+title+"' , TIME= '"+time+"',RECIPE='"+recipe+"', INGRE= '"+ingre+"' WHERE RNUM=" + rnum + ";";
+            // 개인레시피 번호, 조회수를 제외한 날씨, 카테고리, 제목, 소요시간, 레시피, 재료를 변경
+            String sql1="UPDATE PRECIPE SET WEATHER = '"+weather+"',CATE = '"+cate+"', TITLE = '"+title+"' , TIME= '"+time+"',RECIPE='"+recipe+"', INGRE= '"+ingre+"' WHERE RNUM=" + rnum + ";";
             int count1 = stmt.executeUpdate(sql1);
 
-            response.sendRedirect("precipe_list.jsp");
+            response.sendRedirect("precipe_list.jsp");  // 정보를 변경한 후 사용자가 작성한 개인레시피 목록 리스트 페이지로 넘어간다.
 
         rs.close();
         stmt.close();

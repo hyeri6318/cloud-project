@@ -9,6 +9,12 @@
 <%@ page import ="java.sql.*"%>
 <% request.setCharacterEncoding("utf-8"); %>
 
+<%-- 
+    담당자 : 이혜리
+    사용자가 입력한 개인레시피 정보를 변경할 수 있도록 구현한다.
+    SFR-303 : 개인레시피에 부여된 번호와 조회수는 변경할 수 없고 이를 제회한 내용들은 수정이 가능하도록 구현한다.
+ --%>
+
 <%
         // 업로드할 클래스 이름 지정
         Class.forName("com.mysql.cj.jdbc.Driver"); 
@@ -31,26 +37,18 @@
             // Connection 객체가 생성되면 SQL 문을 데이터베이스로 전송하기 위함
             stmt=conn.createStatement();
 
-            //if(rs.next()){
-            //    total = rs.getInt(1);
-            //}
-
             // user 테이블로부터 사용자 아이디와 패스워드 정보 추출
             rs = stmt.executeQuery(query);
 
                 if(rs.next()){
-                    //int rnum = rs.getInt("rnum");
+
                     String title = rs.getString("TITLE");
                     String time = rs.getString("TIME");
                     int view = rs.getInt("VIEW");
                     String ingre = rs.getString("INGRE");
                     String recipe = rs.getString("RECIPE");
-                   // recipe=recipe.replace("\r\n","<br>");
-
-                    String cate = rs.getString("CATE");
-                    
+                    String cate = rs.getString("CATE");      
                     String weather = rs.getString("WEATHER");
-                    
                     String korea = "korea";
                     String chinese = "chinese";
                     String japanese = "japanese";
@@ -61,7 +59,6 @@
                     String fog = "fog";
                     String rain = "rain";
                     String snow = "snow";
-            // TODO
 %>
 
 
@@ -70,13 +67,13 @@
     <link href="style.css" rel="stylesheet" type="precipeko.css">
     <title>한식</title>
     </head>
-    <body style="background:rgb(77, 76, 76);">
+       <body style="background:white;">
     <div class="head" style="
         position: sticky;
         top: 0;
         left: 0;
         right: 0;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(226, 226, 202, 0.80);
         backdrop-filter: blur(6px);
         padding: 0.8rem;
         display: flex;
@@ -84,9 +81,9 @@
     ">
         <h3 style="margin: 0;
             font-size: 2.5rem;
-            color: white;
-        ">
-            세상에 나쁜 요리는 없다
+            color: black;
+            cursor:pointer;
+        "><a style="float: left;" onCLick = "location.href='main.jsp'">세상에 나쁜 요리는 없다 </a>
         </h3>
         <div class="menu" style="
             padding: 0;
@@ -97,32 +94,38 @@
             <a class="btn" style="
                 text-decoration: none;
                 margin-left:50px;
-                color:white;
-                cursor:pointer;
-            ">RECIPE</a>
-            <a class="btn" style="
-                text-decoration: none;
-                margin-left:50px;
-                color:white;
-                cursor:pointer;
-            ">OWN RECIPE</a>
-            <a class="btn" style="
-                text-decoration: none;
-                margin-left:50px;
-                color:white;
-                cursor:pointer;
-            ">RANKING</a>
-            <a class="btn" style="
-                text-decoration: none;
-                margin-left:50px;
-                color:white;
+                color:black;
                 cursor:pointer;"
-            onClick=location.href='profile.html'>PROFILE</a>
+                onClick=location.href='standard.html'>RECIPE</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+                onClick=location.href='precipe.html'>OWN RECIPE</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+                onClick=location.href='standardranking.jsp'>RANKING</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+            onClick=location.href='profile.jsp'>PROFILE</a>
+            <a class="btn" style="
+                text-decoration: none;
+                margin-left:50px;
+                color:black;
+                cursor:pointer;"
+            onClick=location.href='logout.jsp'>LOGOUT</a>
         </div>
     </div>
     
             <table style="
-            
+
                 text-align: center;
                 margin: auto;
                 margin-top: 60px;
@@ -134,11 +137,13 @@
     </table>
     <form action="changeprecipe_ok.jsp" method="post">
    <table style="
+                width: 70%;
                 text-align: center;
                 margin: auto;
                 margin-top: 60px;
                 font-size: 1.4rem;
             ">
+    <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
      <tr>
         <td align="center" width="400">글번호</td>
         <td width="319"><%=rnum%></td>
@@ -213,7 +218,6 @@
                     <input type="radio" name="weather" value = "<%=fog%>"> 안개
                 <%}%>
         </td>
-        <td>&nbsp;</td>
       </tr>
       <tr height="1" bgcolor="#dddddd">
         <td colspan="4"></td>
@@ -231,7 +235,15 @@
      <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
                 <tr>
 
-                   <td><textarea name="recipe"><%=recipe%></textarea></td>
+                   <td><textarea name="recipe" style="
+                    display: block;
+                    width: 180%;
+                    height: 200px;
+                    padding: 15px;
+                    box-sizing: border-box;
+                    resize: vertical;
+                    outline-color: black;
+                   "><%=recipe%></textarea></td>
                 </tr>
 
 
@@ -245,13 +257,10 @@
 %>
 
      <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
-     <tr height="1" bgcolor="#82B5DF"><td colspan="4" width="407"></td></tr>
      <tr align="center">
-      <td width="0">&nbsp;</td>
       <td colspan="2" width="399">
    <input type=submit value="레시피 수정">
    <input type=button value="취소" onClick=location.href='precipe_list.jsp'>
-      <td width="0">&nbsp;</td>
      </tr>
     </table>
             
